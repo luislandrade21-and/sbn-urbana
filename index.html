@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENSBN-Urbana · Guia de estudo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --surf:#ffffff; --sand:#eeeae1; --ink:#1e2723; --muted:#6a746e; --line:#e2ded4;
+  --green:#2f6b4f; --gsoft:#e6efe8; --deep:#1b2b22; --lime:#c5d96a;
+  --clay:#c4683a; --csoft:#f6e6da; --blue:#3a82a6; --bsoft:#e2eef4;
+}
+*{box-sizing:border-box;border-radius:0!important}
+html,body{margin:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.55}
+h1,h2,h3,h4,.disp{font-family:"Space Grotesk",Inter,sans-serif;margin:0;line-height:1.15;font-weight:600}
+p{margin:.3em 0 .8em}
+button{font:inherit;cursor:pointer}
+svg text{font-family:"Space Grotesk",Inter,sans-serif}
+.ico{width:22px;height:22px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* header */
+header.top{position:sticky;top:0;z-index:30;background:var(--deep);color:#fff;display:flex;align-items:stretch;height:58px}
+.brand{display:flex;align-items:center;gap:10px;padding:0 20px;border-right:1px solid #2c3f34;font-family:"Space Grotesk";font-weight:700;white-space:nowrap}
+.brand i{width:10px;height:10px;background:var(--lime);display:block}
+nav.chap{display:flex;flex:1;overflow-x:auto;scrollbar-width:none}
+nav.chap::-webkit-scrollbar{display:none}
+nav.chap a{display:flex;align-items:center;gap:7px;padding:0 13px;color:#b9c7be;text-decoration:none;font-size:.84rem;white-space:nowrap;border-bottom:3px solid transparent}
+nav.chap a span{font-family:"Space Grotesk";font-size:.7rem;color:#7a9183}
+nav.chap a:hover{color:#fff}
+nav.chap a.on{color:#fff;border-bottom-color:var(--lime)}
+nav.chap a.on span{color:var(--lime)}
+.nbtn{background:transparent;border:none;border-left:1px solid #2c3f34;color:#fff;padding:0 18px;display:flex;align-items:center;gap:8px;font-size:.85rem}
+.nbtn:hover{background:#24382d}
+.progress{display:none}
+.progress i{display:block;height:100%;background:var(--green);transition:width .4s}
+
+/* chapter head */
+.view{display:none;animation:fade .4s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+.chead{display:grid;grid-template-columns:auto 1fr 260px;gap:40px;align-items:end;padding:52px 0 30px;border-bottom:1px solid var(--line)}
+.cnum{font-family:"Space Grotesk";font-size:6rem;white-space:nowrap;font-weight:700;line-height:.8;color:transparent;-webkit-text-stroke:2px var(--green)}
+.chead h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.01em}
+.chead .q{font-size:1.1rem;color:var(--muted);margin:.6em 0 0;max-width:720px}
+.cside{font-size:.82rem;color:var(--muted);border-left:2px solid var(--green);padding-left:14px}
+.cside b{display:block;color:var(--ink);font-family:"Space Grotesk";font-weight:600;margin-bottom:4px}
+.eyebrow{font-family:"Space Grotesk";font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:8px}
+.oneline{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:baseline;padding:28px 34px;margin-top:28px;background:var(--green);color:#fff;font-family:"Space Grotesk";font-size:1.32rem;line-height:1.4}
+.oneline b{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
+.feat{padding-top:60px}
+.feat .bh h3{font-size:2rem}
+.feat .bh h3::before{content:"Essencial";display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:8px}
+.minor{padding-top:34px}
+.minor .bh h3{font-size:1.08rem;color:var(--muted)}
+.minor .bh h3::before{content:"Complementar";display:block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#9aa39d;margin-bottom:6px}
+.minor .item h4{font-size:.95rem}.minor .item p{font-size:.86rem}
+.why{background:var(--surf);border-left:4px solid var(--blue);padding:22px 26px;margin-bottom:26px}
+.why h4{color:var(--blue);margin-bottom:8px}
+.cmp{display:grid;grid-template-columns:170px repeat(3,1fr);background:var(--surf)}
+.cmp>div{padding:16px 18px;border-bottom:1px solid var(--line)}
+.cmp .rl{font-family:"Space Grotesk";font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+.cmp .hd{padding-top:24px}
+.lvlbar{display:flex;gap:4px;margin-top:4px}.lvlbar i{flex:1;height:8px;background:var(--line)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:var(--surf);padding:18px;display:flex;gap:14px;transition:transform .2s}
+.card:hover{transform:translateY(-2px)}
+.card h4{font-size:.98rem;margin-bottom:4px}.card p{font-size:.84rem;color:#4a544e;margin:0}
+.card .ib{width:40px;height:40px;flex:0 0 40px;background:var(--csoft);color:var(--clay);display:flex;align-items:center;justify-content:center}
+.stack{display:grid;grid-template-columns:1.35fr 1fr 1.1fr .8fr;gap:0;align-items:stretch}
+.stack .col{background:var(--surf);padding:22px 20px;position:relative}
+.stack .col+.col{margin-left:26px}
+.stack .col+.col::before{content:"→";position:absolute;left:-20px;top:50%;transform:translateY(-50%);color:var(--green);font-weight:700;font-size:1.2rem}
+.stack .col.v{background:var(--green);color:#fff}
+.stack .ch{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.stack .ch b{font-family:"Space Grotesk";font-size:2.2rem;color:var(--green);line-height:1}
+.stack .ch span{font-family:"Space Grotesk";font-weight:600;font-size:1.05rem}
+.stack a.li{display:flex;gap:10px;align-items:center;padding:7px 6px;margin:0 -6px;text-decoration:none;color:var(--ink);font-size:.88rem;transition:background .15s}
+.stack a.li:hover{background:var(--gsoft)}
+.stack a.li .ico{width:18px;height:18px;color:var(--green)}
+.stack a.li em{font-style:normal;font-family:"Space Grotesk";font-weight:700;color:var(--green);min-width:28px;font-size:.8rem}
+.stack .li.nolink{cursor:default}.stack .li.nolink:hover{background:none}
+.ecard{background:var(--surf);padding:26px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative}
+.ecard:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.06)}
+.ecard .top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.ecard .code{font-family:"Space Grotesk";font-size:2.4rem;font-weight:700;color:var(--green);line-height:1}
+.ecard h4{font-size:1.35rem;margin:0}
+.ecard .off{font-size:.8rem;color:var(--muted);margin-bottom:12px}
+.ecard .pl{font-size:1rem;margin-bottom:14px;flex:1}
+.ecard .kd{font-size:.84rem;background:var(--bg);padding:10px 12px;margin-bottom:12px}
+.ecard .kd b{font-family:"Space Grotesk";font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);display:block;margin-bottom:3px}
+.ecard .go{color:var(--green);font-family:"Space Grotesk";font-weight:600;font-size:.85rem;margin-top:10px}
+.chips button{padding:8px 12px}
+.chips button .cc{display:flex;flex-direction:column;align-items:flex-start;line-height:1.2}
+.chips button .cc small{font-size:.78rem;opacity:.85}
+@media(max-width:980px){.stack{grid-template-columns:1fr}.stack .col+.col{margin:22px 0 0}.stack .col+.col::before{content:"↓";left:50%;top:-20px}}
+.subbar{position:sticky;top:58px;z-index:28;background:var(--surf);border-bottom:1px solid var(--line);display:flex;gap:4px;padding:0 clamp(18px,4vw,48px);overflow-x:auto;scrollbar-width:none}
+.subbar a{padding:12px 14px;font-size:.86rem;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+.subbar a b{font-family:"Space Grotesk";color:var(--green);margin-right:6px}
+.subbar a.on{color:var(--ink);border-bottom-color:var(--green)}
+.subbar .pl{font-family:"Space Grotesk";font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);padding:14px 14px 0 0;white-space:nowrap}
+
+/* blocks */
+.blk{padding:44px 0 8px;position:relative}
+.bh{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:22px;flex-wrap:wrap}
+.bh h3{font-size:1.5rem}
+.bh .sub{color:var(--muted);font-size:.95rem;margin-top:6px;max-width:760px}
+.r{font-family:"Space Grotesk";font-size:.7rem;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:5px;border-bottom:1px dotted var(--muted);cursor:help}
+.r::before{content:"";width:9px;height:11px;border:1.4px solid currentColor;display:inline-block}
+.cr{position:absolute;top:14px;right:16px}
+.g{display:grid;gap:34px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+.g12{grid-template-columns:1fr 2fr}.g21{grid-template-columns:2fr 1fr}.g32{grid-template-columns:3fr 2fr}
+.panel{background:var(--surf);padding:28px;position:relative}
+.soft{background:var(--gsoft)}
+.item{position:relative}
+.item .ib{width:46px;height:46px;background:var(--gsoft);color:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.item .ib.c{background:var(--csoft);color:var(--clay)}
+.item .ib.b{background:var(--bsoft);color:var(--blue)}
+.item h4{font-size:1.05rem;margin-bottom:6px;padding-right:4px}
+.item p{color:#3f4943;font-size:.92rem;margin:0}
+.item .r{margin-top:10px}
+.big{font-family:"Space Grotesk";font-size:3rem;font-weight:700;line-height:1;color:var(--green);letter-spacing:-.02em}
+.big.c{color:var(--clay)}
+.cap{color:var(--muted);font-size:.9rem;margin-top:8px}
+ul.l{padding-left:1.1em;margin:.4em 0}ul.l li{margin:.25em 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{background:var(--sand);padding:5px 11px;font-size:.84rem}
+.soft .tags span{background:#fff}
+.dlink{display:inline-flex;gap:6px;align-items:center;background:var(--gsoft);color:var(--green);font-family:"Space Grotesk";font-weight:600;font-size:.78rem;padding:3px 9px;margin:2px 4px 2px 0}
+.warn{border-left:3px solid var(--clay);padding:6px 0 6px 16px;margin:16px 0;color:#4a3a30}
+.hint{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--green);font-weight:500;margin-bottom:14px}
+.hint .dot{width:8px;height:8px;background:var(--green);position:relative}
+.hint .dot::after{content:"";position:absolute;inset:-4px;border:1px solid var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{opacity:1;transform:scale(.6)}100%{opacity:0;transform:scale(1.6)}}
+.illus{font-size:.76rem;color:var(--muted);font-style:italic}
+
+/* bridge */
+.bridge{margin:60px 0 0;padding:34px 0 50px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
+.bridge p{font-size:1.15rem;margin:0;max-width:720px}
+.bridge a{display:flex;flex-direction:column;background:var(--deep);color:#fff;text-decoration:none;padding:18px 26px;min-width:260px;transition:background .2s}
+.bridge a:hover{background:var(--green)}
+.bridge a small{color:var(--lime);font-family:"Space Grotesk";font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.bridge a b{font-family:"Space Grotesk";font-size:1.25rem}
+
+/* diagrams */
+.diag{width:100%;height:auto;display:block}
+.clk{cursor:pointer}
+.clk:hover>rect:first-child{filter:brightness(.96)}
+.detail .tag{display:inline-block;background:var(--green);color:#fff;font-family:"Space Grotesk";font-size:.72rem;font-weight:600;padding:3px 9px;margin-bottom:10px}
+
+/* tabs */
+.tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:24px;overflow-x:auto}
+.tabs button{background:none;border:none;border-bottom:2px solid transparent;padding:10px 0;font-family:"Space Grotesk";font-weight:500;color:var(--muted);white-space:nowrap;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--green)}
+
+/* toggles */
+.tog{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tog button{background:var(--surf);border:1px solid transparent;text-align:left;padding:14px 16px;display:flex;gap:12px;color:var(--ink);transition:all .2s}
+.tog button:hover{border-color:var(--green)}
+.tog button .bx{flex:0 0 22px;height:22px;border:1.6px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--green)}
+.tog button.on{background:var(--gsoft)}
+.tog button.on .bx{background:var(--green);color:#fff}
+.tog button b{font-family:"Space Grotesk";font-weight:600;font-size:.95rem}
+.tog button small{display:block;color:var(--muted);margin-top:3px;font-size:.8rem}
+.meter{display:flex;gap:4px;margin:14px 0 8px}
+.meter i{flex:1;height:10px;background:var(--line);transition:background .3s}
+.meter i.on{background:var(--green)}
+.btn{background:none;border:1px solid var(--ink);padding:7px 14px;font-family:"Space Grotesk";font-size:.82rem}
+
+/* accordion (horizontal) */
+.hacc{display:flex;min-height:280px;gap:6px}
+.hp{flex:0 0 74px;display:flex;background:var(--surf);transition:flex .55s cubic-bezier(.4,.1,.2,1);overflow:hidden;cursor:pointer}
+.hp.on{flex:1 1 0;cursor:default}
+.hp-tab{flex:0 0 74px;display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:16px;background:var(--sand);transition:background .3s;color:var(--ink)}
+.hp:hover .hp-tab{background:#e5e0d4}
+.hp.on .hp-tab{background:var(--deep);color:#fff}
+.hp-tab .k{font-family:"Space Grotesk";font-weight:700}
+.hp-tab .vt{writing-mode:vertical-rl;transform:rotate(180deg);font-family:"Space Grotesk";font-weight:600;font-size:.9rem;white-space:nowrap;overflow:hidden;max-height:200px}
+.hp-body{padding:30px 34px;min-width:400px;opacity:0;transition:opacity .4s .15s;position:relative}
+.hp.on .hp-body{opacity:1}
+.hp-body h3{font-size:1.45rem;margin-bottom:10px}
+.hp-body p{font-size:1rem;max-width:640px}
+
+/* plan table */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chips button{background:var(--surf);border:1px solid var(--line);padding:8px 14px;display:flex;gap:8px;align-items:center;font-size:.85rem;color:var(--ink)}
+.chips button b{font-family:"Space Grotesk"}
+.chips button.on{background:var(--deep);border-color:var(--deep);color:#fff}
+.ptable{width:100%;border-collapse:collapse;background:var(--surf);font-size:.88rem}
+.ptable th{font-family:"Space Grotesk";font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:600}
+.ptable th.p1{border-bottom:3px solid #8fb39c}.ptable th.p2{border-bottom:3px solid var(--green)}.ptable th.p3{border-bottom:3px solid var(--deep)}
+.ptable td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ptable td.code{font-family:"Space Grotesk";font-weight:700;color:var(--clay);white-space:nowrap}
+.ptable td.v{font-family:"Space Grotesk";font-weight:600;width:11%}
+.ptable td.v.f{background:var(--gsoft)}
+.ptable tr.eixo td{background:var(--sand);font-family:"Space Grotesk";font-weight:600;padding:10px 14px}
+.ptable small{color:var(--muted)}
+
+/* flow */
+.flow{display:flex;gap:0;align-items:stretch}
+.flow>div{flex:1;padding:20px 18px;background:var(--surf);position:relative}
+.flow>div+div{margin-left:18px}
+.flow>div+div::before{content:"→";position:absolute;left:-15px;top:50%;transform:translateY(-50%);color:var(--green);font-weight:700}
+
+/* drawer */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,92vw);background:var(--surf);z-index:40;transform:translateX(100%);transition:transform .35s;display:flex;flex-direction:column;box-shadow:-20px 0 40px rgba(0,0,0,.12)}
+.drawer.open{transform:none}
+.drawer .dh{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.drawer textarea{flex:1;margin:18px 20px;border:1px solid var(--line);padding:14px;font:inherit;resize:none;background:var(--bg)}
+.drawer .dn{padding:0 20px 18px;font-size:.78rem;color:var(--muted)}
+
+input.txt{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--line);background:#fff;margin-bottom:18px}
+table.t{width:100%;border-collapse:collapse;font-size:.88rem}
+table.t td,table.t th{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.t th{font-family:"Space Grotesk";font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+@media(max-width:980px){
+  .cmp{grid-template-columns:110px repeat(3,1fr);font-size:.85rem}.oneline{grid-template-columns:1fr;gap:6px}
+  .g2,.g3,.g4,.g5,.g6,.g12,.g21,.g32{grid-template-columns:1fr 1fr}
+  .chead{grid-template-columns:1fr;gap:16px}.cnum{font-size:4rem}
+  .tog{grid-template-columns:1fr 1fr}
+  .hacc{flex-direction:column}.hp{flex:none;flex-direction:column}.hp-tab{flex:none;flex-direction:row;padding:12px 16px}.hp-tab .vt{writing-mode:horizontal-tb;transform:none}.hp-body{display:none;min-width:0}.hp.on .hp-body{display:block}
+  .flow{flex-direction:column}.flow>div+div{margin:14px 0 0}.flow>div+div::before{content:"↓";left:50%;top:-14px;transform:none}
+  .bridge{grid-template-columns:1fr}
+}
+@media(max-width:620px){.g2,.g3,.g4,.g5,.g6,.g12,.g21,.g32,.tog{grid-template-columns:1fr}.brand span{display:none}}
+
+.il{display:block;width:100%;height:100%}
+.ilb{display:block;width:72px;height:72px;margin-bottom:12px}
+.ilb.sm{width:52px;height:52px;margin-bottom:10px}
+.item.row{display:flex;gap:14px;align-items:center}.item.row .ilb{margin:0;flex:0 0 52px}.item.row h4{margin:0}
+.card .ilb.cd,.card>.il.cd{width:64px;height:64px;flex:0 0 64px;margin:0}
+.il.sm2{width:40px;height:40px;flex:0 0 40px}
+.cmp .hd .ilb{width:60px;height:60px;margin-bottom:10px}
+.flow .ilb{margin-bottom:10px}
+
+.chain{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.step{background:var(--surf);padding:24px 24px 22px;position:relative}
+.step+.step{margin-left:30px}
+.step+.step::before{content:"→";position:absolute;left:-24px;top:60px;color:var(--clay);font-weight:700;font-size:1.3rem}
+.step .sn{font-family:"Space Grotesk";font-weight:700;color:var(--clay);font-size:.8rem;letter-spacing:.14em;margin-bottom:10px}
+.step .sn::before{content:"PASSO "}
+.step h4{font-size:1.12rem;margin-bottom:14px}
+.step .big{font-size:2.4rem}
+p.sm{font-size:.86rem;color:#4a544e;margin:12px 0 4px}
+.wrow{display:flex;gap:14px;align-items:center;margin-top:18px}.wrow svg{width:84px;flex:0 0 84px}.wrow p.sm{margin:0}
+.swaps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.swap{background:var(--surf);padding:22px}
+.swap .pair{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:start}
+.swap .pair .ilb{width:100%;height:auto;aspect-ratio:1/1;margin:0 0 6px}
+.swap .pair>div:first-child .ilb{filter:grayscale(.85);opacity:.75}
+.swap .pair small{display:block;font-size:.8rem;color:var(--muted);line-height:1.3}
+.swap .arr{align-self:center;color:var(--green);font-weight:700;font-size:1.4rem;margin-top:-20px}
+.swap .job{font-family:"Space Grotesk";font-weight:600;font-size:1.15rem;color:var(--green);margin:16px 0 6px}
+.swap p{font-size:.9rem;margin:0 0 6px}
+.conds{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cond{background:var(--surf);padding:22px;display:flex;flex-direction:column}
+.cond .cn{font-family:"Space Grotesk";font-weight:700;font-size:2.4rem;line-height:1;color:var(--green);margin-bottom:10px}
+.cond h4{font-size:1.15rem;margin-bottom:8px}
+.cond>p{font-size:.92rem;margin:0 0 6px}
+.cond .not{margin-top:auto;background:var(--csoft);padding:12px 14px;font-size:.86rem;color:#5a3a28}
+.cond .not b{display:block;font-family:"Space Grotesk";font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-bottom:4px}
+.cond .not+.r{margin-top:6px}
+@media(max-width:980px){.chain,.swaps,.conds{grid-template-columns:1fr;gap:16px}.step+.step{margin-left:0}.step+.step::before{content:"↓";left:24px;top:-20px}}
+.hbar{margin-top:12px}.hbar span{display:block;font-size:.8rem;color:var(--muted);margin-bottom:4px}.hbar div{height:22px;background:var(--sand)}.hbar i{display:block;height:100%;min-width:3px}.hbar b{font-family:"Space Grotesk";font-size:1.3rem}
+.swaps.mini .swap{display:block;text-decoration:none;color:inherit;transition:transform .2s}.swaps.mini .swap:hover{transform:translateY(-2px)}
+.swaps.mini .job{margin-bottom:0}
+button.card{font:inherit;color:inherit;text-align:left;border:0;cursor:pointer;width:100%}
+button.card:hover{outline:1.5px solid var(--green)}button.card:focus-visible{outline:2px solid var(--green)}
+.card .more{display:block;text-decoration:none;margin-top:8px;font-family:"Space Grotesk";font-size:.74rem;font-weight:600;color:var(--green)}
+.exm{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.exm[hidden]{display:none}
+.exbg{position:absolute;inset:0;background:rgba(20,30,25,.55)}
+.expan{position:relative;background:var(--bg);max-width:640px;width:100%;max-height:86vh;overflow:auto;padding:32px 34px 26px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.exx{position:absolute;top:10px;right:12px;border:0;background:none;font-size:1.8rem;line-height:1;cursor:pointer;color:var(--muted);padding:4px 8px}
+.exhead{display:flex;gap:18px;align-items:flex-start}.exhead .il.exi{width:84px;height:84px;flex:0 0 84px}
+.exhead h3{font-size:1.5rem;margin:2px 0 6px}.exhead p{margin:0;font-size:.95rem;color:#4a544e}
+ol.exl{list-style:none;padding:0;margin:10px 0 0;counter-reset:ex}
+ol.exl li{counter-increment:ex;position:relative;padding:14px 0 14px 40px;border-top:1px solid var(--line)}
+ol.exl li::before{content:counter(ex);position:absolute;left:0;top:13px;width:26px;height:26px;background:var(--green);color:#fff;font-family:"Space Grotesk";font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+ol.exl b{font-family:"Space Grotesk";font-size:1.02rem}ol.exl .loc{display:block;font-size:.8rem;color:var(--muted);margin:2px 0 4px}
+ol.exl p{margin:0 0 6px;font-size:.9rem}ol.exl a{font-size:.8rem;color:var(--green);font-weight:600}
+.tg{display:inline-block;font-family:"Space Grotesk";font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;background:var(--csoft);color:var(--clay);padding:1px 6px;margin-right:6px}
+body.modal{overflow:hidden}
+h3 .stn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--green);color:#fff;font-size:1rem;margin-right:12px;vertical-align:3px}
+.sg{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line)}.sg .dlink{min-width:64px;flex:0 0 auto;align-self:flex-start}.sg h4{font-size:1rem;margin-bottom:4px}.sg p{margin:0;font-size:.88rem}
+.scrollx{overflow-x:auto}
+table.pr td:first-child{width:46%}table.pr td:last-child{white-space:nowrap}
+p.say{font-size:1.15rem;line-height:1.6;max-width:880px;margin:0}
+details.deep{margin:46px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0}
+details.deep summary{cursor:pointer;font-family:"Space Grotesk";font-weight:600;font-size:1.02rem;color:var(--green);list-style:none}
+details.deep summary::-webkit-details-marker{display:none}details.deep summary::before{content:"+ "}details.deep[open] summary::before{content:"− "}
+.ptable a.xl{display:block;margin-top:5px;font-size:.76rem;color:var(--green);font-weight:600}
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.links a{display:block;background:var(--surf);padding:16px 18px;text-decoration:none;color:inherit;border-left:3px solid var(--green)}
+.links a:hover{background:var(--gsoft)}.links b{display:block;font-family:"Space Grotesk";font-size:.98rem}.links small{color:var(--muted);font-size:.8rem}
+@media(max-width:980px){.links{grid-template-columns:1fr}.expan{padding:26px 20px 20px}}
+@media(max-width:760px){.openhero{grid-template-columns:1fr!important;gap:24px!important}.cmp{overflow-x:auto}.cmp>*{min-width:150px}table.t{font-size:.8rem}table.t td,table.t th{padding:7px 6px}}
+.card a.acc,.gobox a.acc,ol.exl a.acc{display:inline-block;margin-top:12px;padding:9px 14px;background:var(--green);color:#fff!important;font-family:"Space Grotesk";font-weight:600;font-size:.84rem;text-decoration:none}
+.card a.acc:hover,.gobox a.acc:hover,ol.exl a.acc:hover{background:var(--deep,#1f4a37)}
+small.src{display:block;margin-top:6px;font-size:.72rem;color:var(--muted)}
+.cards .card>div{display:flex;flex-direction:column}.cards .card>div .acc{align-self:flex-start;margin-top:auto}.cards .card>div p{margin-bottom:4px}
+.gobox{display:flex;gap:30px;align-items:center;justify-content:space-between;margin-top:30px}.gobox h4{margin:4px 0 6px}.gobox p{margin:0;font-size:.92rem}.gobox a.acc{margin:0;white-space:nowrap}
+@media(max-width:760px){.gobox{flex-direction:column;align-items:flex-start}#pdm{grid-template-columns:1fr!important}.g12{grid-template-columns:1fr!important}}
+.gains{display:flex;flex-direction:column}
+.gains .gg{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.gains .gi{background:var(--surf);padding:18px;display:flex;flex-direction:column;justify-content:center}
+.gains .gi .ilb{width:60px;height:60px;margin:0 0 12px}.gains .gi h4{font-size:1rem;margin:0 0 4px}.gains .gi p{margin:0;font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><i></i><span>ENSBN-Urbana</span></div>
+  <nav class="chap" id="nav"></nav>
+  <button class="nbtn" id="notesBtn" title="Notas desta seção"><svg class="ico" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></svg>Notas</button>
+</header>
+<div class="progress"><i id="prog"></i></div>
+<div class="subbar" id="subbar"></div>
+
+<!-- ================= 00 ABERTURA ================= -->
+<div class="view" id="v-abertura">
+ <div class="wrap">
+  <div style="padding:70px 0 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end;border-bottom:1px solid var(--line)" class="openhero">
+   <div>
+    <div class="eyebrow">Guia de estudo · MMA · Brasília, 2026</div>
+    <h1 style="font-size:clamp(2.4rem,5vw,4.2rem);letter-spacing:-.02em">E se a natureza fosse tratada como <span style="color:var(--green)">infraestrutura</span> da cidade?</h1>
+    <p style="font-size:1.15rem;color:var(--muted);max-width:640px;margin-top:20px">Esta é a aposta da <b style="color:var(--ink)">Estratégia Nacional de Soluções Baseadas na Natureza para Áreas Urbanas (ENSBN-Urbana)</b> - o primeiro instrumento federal brasileiro dedicado a levar as SBN dos projetos-piloto para a política pública. <span class="r" data-p="7"></span></p>
+   </div>
+   <div class="cside" style="font-size:.88rem">
+    <b>Sobre o documento</b>
+    Ministério do Meio Ambiente e Mudança do Clima, com UFAL, CGEE e ICLEI. Ligado ao Programa Cidades Verdes Resilientes e ao Plano Clima 2024-2035. <span class="r" data-p="3"></span><br><br>
+    41 páginas de PDF, cada uma com duas páginas impressas (até a p. 79). As referências <span class="r" style="border:none" data-p="13" data-s="Quadro 1"></span> indicam a seção, a página do PDF e a página impressa.
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Três partes</h3><div class="sub">Este guia reorganiza o documento numa narrativa: primeiro a ideia, depois o programa que a põe em prática, por fim a leitura crítica e o uso. Clique numa seção para abrir.</div></div></div>
+   <div class="hint"><span class="dot"></span>Clique nos blocos para navegar</div>
+   <div class="g g3" id="storyMap" style="gap:24px"></div>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>A ideia em três trocas</h3><div class="sub">Onde a cidade usaria concreto, uma SBN põe a natureza a fazer o mesmo trabalho - e ganha outros benefícios pelo caminho.</div></div></div>
+   <div class="swaps mini">
+    <a class="swap" href="#resposta"><div class="pair"><div><div class="ilb" data-il="renatural"></div><small>Canal de concreto</small></div><span class="arr">→</span><div><div class="ilb" data-il="rio"></div><small>Rio com várzea</small></div></div><div class="job">Drenar e conter cheias</div></a>
+    <a class="swap" href="#resposta"><div class="pair"><div><div class="ilb" data-il="calor"></div><small>Asfalto e galeria</small></div><span class="arr">→</span><div><div class="ilb" data-il="jardimChuva"></div><small>Jardim de chuva e árvores</small></div></div><div class="job">Infiltrar e arrefecer</div></a>
+    <a class="swap" href="#resposta"><div class="pair"><div><div class="ilb" data-il="muro"></div><small>Muro de contenção</small></div><span class="arr">→</span><div><div class="ilb" data-il="mangue"></div><small>Mangue e restinga</small></div></div><div class="job">Proteger a costa</div></a>
+   </div>
+   <p style="margin-top:14px"><a class="dlink" href="#resposta">→ 1.2 · O que é uma SBN, com a definição oficial</a></p>
+  </div>
+
+  <div class="blk minor">
+   <div class="bh"><h3>Como foi construída</h3><span class="r" data-p="3" data-s="Créditos"></span></div>
+   <div class="g g3">
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="people"></svg></div><div class="big" style="font-size:2.2rem">400+</div><div class="cap">participantes nas oficinas regionais presenciais</div></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="doc"></svg></div><div class="big" style="font-size:2.2rem">210</div><div class="cap">contribuições por formulário virtual</div></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="mega"></svg></div><div class="big" style="font-size:2.2rem">313</div><div class="cap">contribuições na consulta pública</div></div>
+   </div>
+  </div>
+  <div class="bridge"><p>Tudo começa por perceber por que as cidades brasileiras ficaram tão expostas - e por que as soluções de sempre já não chegam.</p><a href="#problema"><small>Parte 1 · 1.1</small><b>O problema →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 01 PROBLEMA ================= -->
+<div class="view" id="v-problema">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">1.1</div><div><div class="eyebrow">Parte 1 · A ideia</div><h2>O problema</h2><p class="q">Por que as cidades brasileiras sofrem tanto com a chuva e o calor?</p></div>
+   <div class="cside"><b>No documento</b>Sumário executivo · PDF 4<br>Cap. 1 Introdução · PDF 10<br>Cap. 2 Diagnóstico · PDF 11<br>Cap. 3 Delimitação · PDF 16</div></div>
+  <div class="oneline"><b>Em uma frase</b>As cidades cresceram impermeáveis e sobre áreas frágeis; a chuva e o calor viraram desastre, sobretudo para os mais pobres; e a resposta de sempre, cinza, transfere o problema e fica com quase todo o dinheiro.</div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Uma cadeia em três passos</h3><div class="sub">Cada passo é causa do seguinte.</div></div></div>
+   <div class="chain">
+    <div class="step">
+     <div class="sn">1</div><div class="ilb" data-il="cidade"></div>
+     <h4>A cidade cresceu impermeável e sobre áreas frágeis</h4>
+     <div class="big">87,4%</div><div class="cap">da população vive em cidades: 177,5 milhões, mais 16,6 milhões em pouco mais de uma década.</div><span class="r" data-p="16"></span>
+     <div class="big" style="margin-top:18px">6,9%</div><div class="cap">das áreas urbanizadas têm vegetação (MapBiomas, 2022). O resto é asfalto, telhado e concreto.</div><span class="r" data-p="16"></span>
+     <p class="sm">As populações vulnerabilizadas foram ocupar encostas e margens de rios.</p><span class="r" data-p="11"></span>
+    </div>
+    <div class="step">
+     <div class="sn">2</div><div class="ilb" data-il="chuva"></div>
+     <h4>A chuva e o calor viram desastre</h4>
+     <div class="big c">8,2 mi</div><div class="cap">de pessoas vivem em áreas de risco alto ou muito alto.</div><span class="r" data-p="11"></span>
+     <div class="big c" style="margin-top:18px">~120 mil</div><div class="cap">óbitos associados a ondas de calor entre 2000 e 2019; nas ilhas de calor a temperatura sobe até +5 °C.</div><span class="r" data-p="16"></span> <span class="r" data-p="11"></span>
+     <div class="wrow"><svg class="diag" viewBox="0 0 220 220" id="waffle"></svg><p class="sm">3.679 dos 5.571 municípios (cerca de dois terços) têm capacidade adaptativa baixa ou muito baixa.</p></div><span class="r" data-p="16"></span>
+    </div>
+    <div class="step">
+     <div class="sn">3</div><div class="ilb" data-il="piscinao"></div>
+     <h4>A resposta de sempre transfere o problema</h4>
+     <p class="sm" style="margin-top:0">Obras cinzas, rígidas e monofuncionais: canalizar, pavimentar, levar a água depressa para longe. Resolvem um trecho e empurram a cheia para jusante, e ficam com quase todo o investimento.</p><span class="r" data-p="10" data-s="Cap. 1"></span>
+     <div class="hbar"><span>Pavimentação e saneamento tradicional</span><div><i style="width:83%;background:var(--clay)"></i></div><b>83%</b></div><div class="hbar"><span>Adaptação climática e resiliência ambiental</span><div><i style="width:.6%;background:var(--green)"></i></div><b style="color:var(--green)">0,1%</b></div>
+     <p class="sm">Distribuição dos investimentos (ABDE). Entre 2020 e 2024, o ODS 13 (ação climática) recebeu 5,8% e o ODS 15 (vida terrestre) 1,0%.</p><span class="r" data-p="11"></span>
+    </div>
+   </div>
+  </div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Há outro caminho</h3><div class="sub">O mesmo rio, tratado de duas maneiras. A crítica não é ao concreto em si, mas a obras que resolvem um trecho e transferem o problema.</div></div><span class="r" data-p="10" data-s="Cap. 1-2"></span></div>
+   <div class="g g2">
+    <div class="panel"><div class="eyebrow" style="color:var(--clay)">O caminho de sempre · infraestrutura cinza</div><svg class="diag" viewBox="0 0 560 250" id="cxGrey"></svg>
+     <ul class="l" style="margin-top:14px"><li>Canalização de rios e pavimentação em massa</li><li>Escoamento rápido: o pico de cheia vai para jusante</li><li>Uma função só, com o limite administrativo como referência</li></ul></div>
+    <div class="panel"><div class="eyebrow">O outro caminho · Soluções Baseadas na Natureza</div><svg class="diag" viewBox="0 0 560 250" id="cxGreen"></svg>
+     <ul class="l" style="margin-top:14px"><li>Margens vegetadas, várzea e inundação controlada</li><li>A água infiltra, fica retida e evapora</li><li>Várias funções ao mesmo tempo, pensadas por bacia e paisagem</li></ul></div>
+   </div>
+   <p class="illus" style="margin-top:10px">Cortes esquemáticos feitos para este guia (não são figuras do documento).</p>
+  </div>
+
+  <div class="blk minor">
+   <div class="bh"><div><h3>Outros exemplos do caminho de sempre</h3></div><span class="r" data-p="11"></span></div>
+   <div class="g g3">
+    <div class="item row"><div class="ilb sm" data-il="piscinao"></div><div><h4>Piscinões</h4><p>Ficam secos e inacessíveis a maior parte do ano e podem empurrar o pico de cheia para jusante.</p></div></div>
+    <div class="item row"><div class="ilb sm" data-il="muro"></div><div><h4>Costa rígida</h4><p>Muros, enrocamentos, gabiões e espigões interrompem a deriva litorânea: acumulam areia de um lado e agravam a erosão do outro.</p></div></div>
+    <div class="item row"><div class="ilb sm" data-il="duna"></div><div><h4><i>Coastal squeeze</i></h4><p>Praias, dunas e manguezais não conseguem migrar para o interior com a subida do mar porque esbarram em estruturas rígidas.</p></div></div>
+   </div>
+  </div>
+  <div class="bridge"><p>O outro caminho tem nome: Soluções Baseadas na Natureza. Mas o que é exatamente uma SBN, e como distingui-la de um jardim bonito?</p><a href="#resposta"><small>1.2</small><b>O que é uma SBN →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 02 RESPOSTA ================= -->
+<div class="view" id="v-resposta">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">1.2</div><div><div class="eyebrow">Parte 1 · A ideia</div><h2>O que é uma SBN</h2><p class="q">O que quer dizer "usar a natureza como infraestrutura", e quando é que isso conta mesmo como SBN?</p></div>
+   <div class="cside"><b>No documento</b>Sumário executivo · PDF 4<br>Cap. 3 Delimitação · PDF 13-15<br>Quadro 1 e Quadro 2<br>Diretrizes 1 e 3 · PDF 25-26</div></div>
+  <div class="oneline"><b>Em uma frase</b>Uma SBN usa solo, água e vegetação para fazer um trabalho de infraestrutura: drenar, arrefecer, proteger. Só conta se a natureza estiver viva e a funcionar, se resolver um problema real das pessoas, e se for justa e mantida no tempo.</div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Em vez de… a natureza faz o trabalho</h3><div class="sub">Três trocas que resumem a ideia: a mesma função, feita por um sistema vivo.</div></div></div>
+   <div class="swaps">
+    <div class="swap"><div class="pair"><div><div class="ilb" data-il="renatural"></div><small>Canal de concreto</small></div><span class="arr">→</span><div><div class="ilb" data-il="rio"></div><small>Rio com várzea e margens vegetadas</small></div></div><div class="job">Drenar e conter cheias</div><p>A várzea guarda a água da cheia em vez de a empurrar para jusante.</p><span class="r" data-p="13" data-s="Quadro 1"></span></div>
+    <div class="swap"><div class="pair"><div><div class="ilb" data-il="calor"></div><small>Asfalto e galeria pluvial</small></div><span class="arr">→</span><div><div class="ilb" data-il="jardimChuva"></div><small>Jardim de chuva e árvores</small></div></div><div class="job">Infiltrar e arrefecer</div><p>A água entra no solo onde cai, e a sombra e a evapotranspiração baixam a temperatura.</p><span class="r" data-p="13" data-s="Quadro 1"></span></div>
+    <div class="swap"><div class="pair"><div><div class="ilb" data-il="muro"></div><small>Muro e enrocamento</small></div><span class="arr">→</span><div><div class="ilb" data-il="mangue"></div><small>Manguezal e restinga</small></div></div><div class="job">Proteger a costa</div><p>O ecossistema costeiro amortece o mar e pode acompanhar a sua subida.</p><span class="r" data-p="11"></span> <span class="r" data-p="13" data-s="Quadro 1"></span></div>
+   </div>
+   <p class="illus" style="margin-top:10px">Pares montados por este guia a partir das intervenções e das críticas do documento.</p>
+  </div>
+
+  <div class="blk">
+   <div class="g g32">
+    <div><div class="bh"><div><h3>A definição</h3></div></div>
+     <p style="font-size:1.12rem;margin-top:0">Em palavras simples: <b>ações que protegem, restauram ou criam ecossistemas para resolver problemas das cidades</b>, como cheias, calor ou falta de água, trazendo ao mesmo tempo ganhos para as pessoas e para a natureza.</p>
+     <div class="panel soft" style="margin-top:16px"><span class="r cr" data-p="13" data-s="Cap. 3"></span><div class="eyebrow">Definição oficial adotada · UNEA, Resolução 5/5 (2022)</div>
+      <p style="margin:0">Ações para <b style="color:var(--green)">proteger, conservar, restaurar, usar de forma sustentável e gerir</b> ecossistemas terrestres, de água doce, costeiros e marinhos, naturais ou modificados, que enfrentam desafios sociais, econômicos e ambientais de forma eficaz e adaptativa…</p></div></div>
+    <div class="gains"><div class="eyebrow" style="margin-top:6px">…gerando ao mesmo tempo</div>
+     <div class="gg">
+      <div class="gi"><div class="ilb" data-il="pessoas"></div><h4>Bem-estar humano</h4><p>Sombra, lazer e saúde no dia a dia</p></div>
+      <div class="gi"><div class="ilb" data-il="nascente"></div><h4>Serviços ecossistêmicos</h4><p>Água, ar e solo que a natureza entrega</p></div>
+      <div class="gi"><div class="ilb" data-il="encosta"></div><h4>Resiliência</h4><p>Menos estrago com cheias, calor e deslizamentos</p></div>
+      <div class="gi"><div class="ilb" data-il="fauna"></div><h4>Biodiversidade</h4><p>Habitat e ligação para fauna e flora</p></div>
+     </div></div>
+   </div>
+  </div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Três condições para contar como SBN</h3><div class="sub">Ter vegetação não basta. O documento traça fronteiras, exclusões e critérios nacionais; este guia junta-os em três condições.</div></div></div>
+   <div class="conds">
+    <div class="cond"><div class="cn">1</div><div class="ilb" data-il="arvore"></div><h4>Tem natureza viva a funcionar</h4>
+     <p>Exige um componente biótico vivo e funcional. Soluções híbridas são aceitas se a estrutura convencional servir de suporte, com contribuição ecológica real e ganhos mensuráveis para a biodiversidade.</p><span class="r" data-p="15" data-s="Fronteiras"></span>
+     <div class="not"><b>Parece, mas não é</b>Relva decorativa sobre um canal de concreto; monoculturas, espécies exóticas ou invasoras; intervenções sem ganho líquido para a natureza.</div><span class="r" data-p="15" data-s="Quadro 2"></span></div>
+    <div class="cond"><div class="cn">2</div><div class="ilb" data-il="chuva"></div><h4>Resolve um problema real das pessoas</h4>
+     <p>Parte de um desafio territorial diagnosticado e gera bem-estar. Uma área protegida não é SBN só por conservar; e remover carbono nunca justifica adiar a descarbonização.</p><span class="r" data-p="15" data-s="Fronteiras"></span>
+     <div class="not"><b>Parece, mas não é</b>Plantar para compensar emissões e continuar a poluir ("falsas soluções"); projetos incompatíveis com as Convenções do Rio.</div><span class="r" data-p="15" data-s="Quadro 2"></span></div>
+    <div class="cond"><div class="cn">3</div><div class="ilb" data-il="pessoas"></div><h4>É justa e mantida no tempo</h4>
+     <p>Benefícios distribuídos de forma equitativa, participação social e viabilidade econômica em todo o ciclo de vida, incluindo a manutenção.</p><span class="r" data-p="4" data-s="Critérios nacionais"></span>
+     <div class="not"><b>Parece, mas não é</b>Um parque novo que valoriza a área e expulsa quem lá vivia; perda de acesso a recursos comunitários; violação de direitos.</div><span class="r" data-p="15" data-s="Quadro 2"></span></div>
+   </div>
+   <p class="illus" style="margin-top:10px">Agrupamento deste guia: cada condição junta as três fronteiras (PDF 15), os seis critérios de exclusão (Quadro 2, PDF 15) e os critérios nacionais de integridade (PDF 4). Os exemplos "parece, mas não é" ilustram as exclusões do documento.</p>
+  </div>
+
+  <div class="panel soft gobox"><div><div class="eyebrow">Para um projeto concreto</div><h4>Os 9 critérios técnicos do documento, em forma de teste</h4><p>As três condições acima resumem a ideia. Para verificar um projeto real, critério a critério, use a ferramenta da Parte 3.</p></div><a class="acc" href="#projeto">3.1 · Avaliar um projeto →</a></div>
+
+  <div class="blk minor">
+   <div class="bh"><div><h3>Diretrizes ligadas a este capítulo</h3><div class="sub">Agrupamento feito para este guia; a numeração é a do documento.</div></div></div>
+   <div class="g g2">
+    <div class="item"><span class="dlink">D1</span><h4>Resiliência socioambiental, territorial e climática</h4><p>Reduzir riscos geo-hidrológicos e estabilizar encostas, combater o calor extremo, recuperar processos naturais, ampliar a segurança hídrica e alimentar. Escolher as SBN a partir de diagnósticos locais e participativos, priorizando escolas, unidades de saúde, assistência social e terminais de transporte.</p><span class="r" data-p="25" data-s="Diretriz 1"></span></div>
+    <div class="item"><span class="dlink">D3</span><h4>Soluções híbridas como recursos complementares</h4><p>Integrar infraestrutura cinza, verde e azul quando tecnicamente justificado, com critérios explícitos de redução de risco, regeneração de ecossistemas e manutenção sustentável, com prioridade aos territórios mais vulneráveis.</p><span class="r" data-p="26" data-s="Diretriz 3"></span></div>
+   </div>
+  </div>
+  <div class="bridge"><p>Com a ideia e as condições claras, falta ver o leque concreto: que intervenções cabem no conceito, do mais natural ao mais construído.</p><a href="#tipos"><small>1.3</small><b>Tipos de intervenção →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 1.3 TIPOS ================= -->
+<div class="view" id="v-tipos">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">1.3</div><div><div class="eyebrow">Parte 1 · A ideia</div><h2>Tipos de intervenção</h2><p class="q">Que intervenções cabem no conceito - e como se distinguem?</p></div>
+   <div class="cside"><b>No documento</b>Quadro 1 · PDF 13<br>Níveis e exemplos · PDF 14<br>Eixo 5 · PDF 33<br>Fotografias · PDF 7-38</div></div>
+  <div class="oneline"><b>Em uma frase</b>Um gradiente em três tipos: proteger o que ainda funciona, restaurar o que se degradou e restabelecer processos onde a cidade apagou a natureza.</div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Os três tipos lado a lado</h3><div class="sub">O que muda de um tipo para outro é o ponto de partida e o grau de intervenção humana.</div></div><span class="r" data-p="13" data-s="Quadro 1"></span></div>
+   <div class="cmp">
+    <div class="rl hd"></div>
+    <div class="hd"><div class="ilb " data-il="nascente"></div><div class="eyebrow">Tipo 1</div><h3 style="font-size:1.5rem">Proteger</h3></div>
+    <div class="hd"><div class="ilb " data-il="margem"></div><div class="eyebrow" style="color:var(--blue)">Tipo 2</div><h3 style="font-size:1.5rem">Restaurar</h3></div>
+    <div class="hd"><div class="ilb " data-il="jardimChuva"></div><div class="eyebrow" style="color:var(--clay)">Tipo 3</div><h3 style="font-size:1.5rem">Restabelecer</h3></div>
+    <div class="rl">Grau de intervenção</div>
+    <div><b>Mínimo</b><div class="lvlbar"><i style="background:var(--green)"></i><i></i><i></i></div></div>
+    <div><b>Moderado</b><div class="lvlbar"><i style="background:var(--blue)"></i><i style="background:var(--blue)"></i><i></i></div></div>
+    <div><b>Moderado a alto</b><div class="lvlbar"><i style="background:var(--clay)"></i><i style="background:var(--clay)"></i><i style="background:var(--clay)"></i></div></div>
+    <div class="rl">Ponto de partida</div>
+    <div>Ecossistemas naturais ou seminaturais que ainda funcionam</div>
+    <div>Ecossistemas com degradação física, química ou biológica</div>
+    <div>Ambientes urbanos e periurbanos intensamente modificados</div>
+    <div class="rl">Objetivo</div>
+    <div>Evitar a degradação; manter processos ecológicos e serviços ecossistêmicos</div>
+    <div>Restabelecer ou fortalecer as funções ecológicas</div>
+    <div>Reintroduzir processos ecológicos onde a estrutura original foi apagada</div>
+    <div class="rl">Exemplos</div>
+    <div><div class="tags"><span>Unidades de Conservação</span><span>Corredores ecológicos</span><span>Remanescentes florestais</span><span>APPs</span><span>Nascentes</span><span>Áreas de recarga hídrica</span><span>Faixas não edificáveis na costa</span></div></div>
+    <div><div class="tags"><span>Florestas</span><span>Manguezais, marismas, restingas</span><span>Dunas e corais</span><span>Nascentes, rios, reservatórios</span><span>Sistemas agroflorestais</span><span>Agricultura agroecológica e regenerativa</span><span>Baixo carbono</span><span>Habitats de polinizadores</span></div></div>
+    <div><div class="tags"><span>Ver o catálogo abaixo ↓</span></div><p style="font-size:.86rem;margin-top:10px">Cerca de vinte intervenções listadas - é o tipo mais ligado ao desenho urbano e à arquitetura.</p></div>
+   </div>
+   <div class="panel" style="margin-top:22px;border-left:4px solid var(--clay)"><span class="r cr" data-p="13" data-s="Quadro 1"></span><h4 style="color:var(--clay)">A ressalva mais importante do Tipo 3</h4><p style="margin:0;font-size:1.02rem">Não se trata de criar ecossistemas artificiais desconectados. A intervenção precisa recuperar funções ecológicas, usar referências do bioma de origem e ampliar a ligação com habitats, solos e redes hídricas do entorno.</p></div>
+  </div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Catálogo do Tipo 3</h3><div class="sub">As intervenções urbanas listadas no Quadro 1, agrupadas por função. O agrupamento e as descrições curtas são deste guia; os nomes são do documento.</div></div><span class="r" data-p="13" data-s="Quadro 1"></span></div>
+   <div class="hint"><span class="dot"></span>Filtre por função · clique num cartão para ver onde já foi feito</div>
+   <div class="chips" id="catChips"></div>
+   <div class="cards" id="catCards"></div>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Do tipo ao problema: onde o plano vai aplicar</h3><div class="sub">O Eixo 5 traduz os tipos em seis frentes de projetos municipais. Números = meta de longo prazo (2035).</div></div><span class="r" data-p="33" data-s="Quadro 11"></span></div>
+   <div class="g g6" style="gap:22px">
+    <div class="item"><div class="ilb " data-il="chuva"></div><div class="big" style="font-size:2rem">250</div><h4>Inundações e alagamentos</h4><p>projetos estruturados</p></div>
+    <div class="item"><div class="ilb " data-il="calor"></div><div class="big" style="font-size:2rem">250</div><h4>Resfriamento urbano</h4><p>projetos estruturados</p></div>
+    <div class="item"><div class="ilb " data-il="encosta"></div><div class="big" style="font-size:2rem">50</div><h4>Encostas (híbridas)</h4><p>projetos estruturados</p></div>
+    <div class="item"><div class="ilb " data-il="hortaCom"></div><div class="big" style="font-size:2rem">250</div><h4>Agricultura urbana</h4><p>projetos estruturados</p></div>
+    <div class="item"><div class="ilb " data-il="favela"></div><div class="big" style="font-size:2rem">50</div><h4>Favelas e periferias</h4><p>projetos implementados</p></div>
+    <div class="item"><div class="ilb " data-il="mangue"></div><div class="big" style="font-size:2rem">50</div><h4>Erosão costeira</h4><p>projetos implementados</p></div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Casos fotografados no documento</h3><div class="sub">As imagens escolhidas pelo MMA para ilustrar a Estratégia - boas referências para visitar ou pesquisar.</div></div></div>
+   <div class="cards">
+    <div class="card"><div class="ilb cd" data-il="fito"></div><div><h4>Jardim filtrante · Parque do Caiara</h4><p>Recife (PE) - tanques vegetados tratam por gravidade a água do Riacho do Cavouco, dentro do parque.</p><a class="acc" href="https://www.folhape.com.br/noticias/jardins-filtrantes-irao-despoluir-riacho-do-cavouco-no-recife/214970/" target="_blank" rel="noopener">Acesse aqui ↗</a><small class="src">Fonte: Folha de Pernambuco</small><span class="r" data-p="7" data-s="Apresentação"></span></div></div>
+    <div class="card"><div class="ilb cd" data-il="parqueLinear"></div><div><h4>Parque Orla Piratininga</h4><p>Niterói (RJ) - parque linear na margem da Lagoa de Piratininga, com jardins filtrantes; um dos primeiros projetos no Brasil a usar SBN de forma explícita.</p><a class="acc" href="https://revistas.usp.br/revistalabverde/article/download/189324/188278/590239" target="_blank" rel="noopener">Acesse aqui ↗</a><small class="src">Fonte: Revista LABVERDE (USP)</small><span class="r" data-p="11"></span></div></div>
+    <div class="card"><div class="ilb cd" data-il="rio"></div><div><h4>Parque Barigui</h4><p>Curitiba (PR) - criado em 1972 numa várzea; o lago recebe as cheias do Rio Barigui e o parque alaga para os bairros não alagarem.</p><a class="acc" href="https://www.curitiba.pr.gov.br/noticias/em-areas-estrategicas-parques-alagaveis-de-curitiba-servem-para-conter-e-drenar-aguas-das-chuvas/70983" target="_blank" rel="noopener">Acesse aqui ↗</a><small class="src">Fonte: Prefeitura de Curitiba</small><span class="r" data-p="18"></span></div></div>
+    <div class="card"><div class="ilb cd" data-il="jardimChuva"></div><div><h4>Jardim de chuva · Parque Lagoa do Nado</h4><p>Belo Horizonte (MG) - projeto-piloto com sinalização educativa; a cidade abriu depois licitação para 60 jardins de chuva na bacia do Nado.</p><a class="acc" href="https://prefeitura.pbh.gov.br/noticias/prefeitura-inaugura-jardim-de-chuva-no-parque-municipal-fazenda-lagoa-do-nado" target="_blank" rel="noopener">Acesse aqui ↗</a><small class="src">Fonte: Prefeitura de BH</small><span class="r" data-p="21"></span></div></div>
+    <div class="card"><div class="ilb cd" data-il="mangue"></div><div><h4>Mangal</h4><p>Belém (PA) - a legenda diz só "Mangal". O caso conhecido é o Mangal das Garças: 40 mil m² de área alagada revitalizada na margem do Rio Guamá (2005).</p><a class="acc" href="https://portalamazonia.com/amazonia-az/mangal-das-garcas" target="_blank" rel="noopener">Acesse aqui ↗</a><small class="src">Fonte: Portal Amazônia</small><span class="r" data-p="23"></span></div></div>
+    <div class="card"><div class="ilb cd" data-il="praca"></div><div><h4>Parque Rachel de Queiroz</h4><p>Fortaleza (CE) - primeiro sistema municipal de alagados construídos em espaço público, para reabilitar o Riacho Cachoeirinha.</p><a class="acc" href="https://repositorio.ufc.br/bitstream/riufc/77005/4/2024_dis_mgcappleyard.pdf" target="_blank" rel="noopener">Acesse aqui ↗</a><small class="src">Fonte: UFC</small><span class="r" data-p="38"></span></div></div>
+   </div>
+   <p class="illus" style="margin-top:12px"><span class="tg">guia</span> Locais das fotografias do documento; descrições e links reunidos por este guia.</p>
+  </div>
+  <div class="bridge"><p>Um jardim de chuva sozinho não resolve uma bacia. Depois do "o quê", a pergunta é a escala: como ligar intervenções num sistema.</p><a href="#escala"><small>1.4</small><b>A escala →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 03 ESCALA ================= -->
+<div class="view" id="v-escala">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">1.4</div><div><div class="eyebrow">Parte 1 · A ideia</div><h2>A escala: do jardim de chuva à bacia</h2><p class="q">Em que escala se deve pensar uma SBN - e onde ela se aplica?</p></div>
+   <div class="cside"><b>No documento</b>Níveis · PDF 14<br>Delimitação territorial · PDF 16-17<br>Quadro 3<br>Diretrizes 2, 4, 5, 6 · PDF 26</div></div>
+  <div class="oneline"><b>Em uma frase</b>O lugar onde a intervenção acontece não é o mesmo que o sistema de que ela depende: componentes devem compor arranjos, e arranjos, sistemas.</div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Três níveis de organização</h3></div><span class="r" data-p="14" data-s="Cap. 3"></span></div>
+   <div class="hint"><span class="dot"></span>Clique num nível para ver os exemplos do documento</div>
+   <div class="g g21" style="gap:30px">
+    <svg class="diag" viewBox="0 0 900 330" id="levels"></svg>
+    <div class="detail" id="levelDetail"></div>
+   </div>
+  </div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Onde se aplica: três camadas de território</h3><div class="sub">A Estratégia separa o escopo direto (onde se intervém) do escopo funcional (o sistema de que a cidade depende).</div></div><span class="r" data-p="17" data-s="Quadro 3"></span></div>
+   <div class="hint"><span class="dot"></span>Clique nas camadas do diagrama</div>
+   <div class="g g21" style="gap:30px">
+    <svg class="diag" viewBox="0 0 800 420" id="scope"></svg>
+    <div class="detail" id="scopeDetail"></div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Cidades-esponja: o horizonte hidrológico</h3><div class="sub">O exemplo mais claro de pensar em sistema.</div></div><span class="r" data-p="16" data-s="Cap. 3"></span></div>
+   <div class="why"><h4>Por que aparece aqui?</h4><p style="margin:0">Porque o próprio documento usa o termo como meta de fundo: ao adotar as SBN como infraestrutura pública, a Estratégia diz que elas são instrumentos para <b>transformar as cidades brasileiras em cidades-esponja</b>, integradas aos ciclos naturais - sobretudo ao ciclo da água. <span class="r" data-p="13"></span><br>O conceito volta no sumário executivo, no diagnóstico, no Objetivo 2 ("integrar as SBN ao planejamento urbano") e nas considerações finais. <span class="r" data-p="4"></span> <span class="r" data-p="22" data-s="Objetivo 2"></span> <span class="r" data-p="38"></span></p></div>
+   <div class="flow">
+    <div><div class="ilb sm" data-il="chuva"></div><h4>Retenção</h4><p style="font-size:.84rem;margin:0;color:var(--muted)">segurar a chuva onde cai</p></div>
+    <div><div class="ilb sm" data-il="piso"></div><h4>Infiltração</h4><p style="font-size:.84rem;margin:0;color:var(--muted)">devolver a água ao solo</p></div>
+    <div><div class="ilb sm" data-il="detencao"></div><h4>Armazenamento</h4><p style="font-size:.84rem;margin:0;color:var(--muted)">reservar para a estiagem</p></div>
+    <div><div class="ilb sm" data-il="arvore"></div><h4>Evapotranspiração</h4><p style="font-size:.84rem;margin:0;color:var(--muted)">a vegetação arrefece o ar</p></div>
+    <div><div class="ilb sm" data-il="nascente"></div><h4>Uso sustentável</h4><p style="font-size:.84rem;margin:0;color:var(--muted)">água como recurso</p></div>
+   </div>
+   <p class="illus" style="margin-top:10px">Os cinco processos são do documento; as legendas curtas são deste guia. Condição do documento: funcionar como sistema integrado ao território, não como ações pontuais.</p>
+  </div>
+  <div class="blk minor">
+   <div class="bh"><div><h3>Diretrizes ligadas a este capítulo</h3><div class="sub">Agrupamento feito para este guia.</div></div><span class="r" data-p="26" data-s="Cap. 6"></span></div>
+   <div class="g g4">
+    <div class="item"><div class="ilb sm" data-il="piso"></div><span class="dlink">D2</span><h4>Infraestrutura verde-azul e permeabilidade</h4><p>Integrar ao planejamento urbano e regional e às obras públicas; ampliar áreas permeáveis, retenção e infiltração; multifuncionalidade dos corpos hídricos.</p></div>
+    <div class="item"><div class="ilb sm" data-il="fauna"></div><span class="dlink">D4</span><h4>Sociobiodiversidade</h4><p>Fauna, flora, microbiomas, espécies alimentares, práticas agroecológicas e os saberes associados.</p></div>
+    <div class="item"><div class="ilb sm" data-il="arvore"></div><span class="dlink">D5</span><h4>Espécies nativas</h4><p>Do bioma e dos sistemas costeiro-marinhos locais, escolhidas por valor ecológico, atração de fauna e resiliência climática.</p></div>
+    <div class="item"><div class="ilb sm" data-il="corredor"></div><span class="dlink">D6</span><h4>Conectividade ecológica</h4><p>Planejar em sistema, ligando habitats, ecossistemas, áreas protegidas e espaços urbanos, conforme o bioma.</p></div>
+   </div>
+  </div>
+
+  <div class="blk minor">
+   <div class="bh"><div><h3>Uma estratégia que coordena, não substitui</h3><div class="sub">A ENSBN articula as políticas existentes no campo das SBN.</div></div><span class="r" data-p="17" data-s="Quadro 3"></span></div>
+   <div class="g g2">
+    <div><div class="eyebrow">Interfaces com políticas</div><div class="tags"><span>Clima</span><span>Desenvolvimento urbano</span><span>Habitação</span><span>Saneamento</span><span>Mobilidade</span><span>Saúde</span><span>Defesa civil</span><span>Segurança alimentar</span><span>Recursos hídricos</span><span>Biodiversidade</span><span>Florestas</span><span>Unidades de Conservação</span><span>Restauração</span><span>Agricultura</span><span>Povos e comunidades tradicionais</span></div></div>
+    <div><div class="eyebrow">Instrumentos citados</div><div class="tags"><span>Programa Cidades Verdes Resilientes</span><span>Plano Nac. de Arborização Urbana</span><span>Plano Nac. de Resfriamento e Combate ao Calor</span><span>Plano Nac. de Recuperação da Vegetação Nativa</span><span>Programa dos Manguezais</span><span>Zoneamento Ambiental Municipal Urbano</span></div></div>
+   </div>
+  </div>
+  <div class="bridge"><p>Escala e sistema respondem ao "onde" e ao "como". Falta o "para quem": quem ganha - e quem pode perder - com as SBN.</p><a href="#justica"><small>1.5</small><b>Para quem →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 04 JUSTIÇA ================= -->
+<div class="view" id="v-justica">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">1.5</div><div><div class="eyebrow">Parte 1 · A ideia</div><h2>Justiça socioambiental como critério</h2><p class="q">Quem está mais exposto, quem deve ser prioridade - e como evitar que o verde expulse quem mora lá?</p></div>
+   <div class="cside"><b>No documento</b>Diagnóstico · PDF 11, 16<br>Exclusões · PDF 15<br>Prioridades · PDF 23<br>Diretrizes 7-9 · PDF 26<br>Eixo 3 · PDF 31</div></div>
+  <div class="oneline"><b>Em uma frase</b>Quem mais sofre deve vir primeiro; mas melhorar um bairro pode expulsar quem mora lá. Por isso a Estratégia exige salvaguardas desde o início - e é isso que torna a dimensão social uma condição, não um extra.</div>
+
+  <div class="blk">
+   <div class="bh"><div><h3><span class="stn">1</span>Quem está mais exposto deve vir primeiro</h3><div class="sub">Os investimentos concentraram-se nas áreas de maior renda; populações vulnerabilizadas foram para encostas e margens de rios.</div></div><span class="r" data-p="11" data-s="Cap. 2"></span></div>
+   <div class="g g4">
+    <div class="item"><div class="ilb " data-il="encosta"></div><div class="big c">8,2 mi</div><div class="cap">pessoas vivem em áreas de risco alto ou muito alto</div></div>
+    <div class="item"><div class="ilb " data-il="favela"></div><div class="big c">12.348</div><div class="cap">favelas e comunidades urbanas</div></div>
+    <div class="item"><div class="ilb " data-il="pessoas"></div><div class="big c">16,5 mi</div><div class="cap">pessoas vivem nessas comunidades</div></div>
+    <div class="item"><h4>Mais atingidos</h4><div class="tags"><span>Favelas</span><span>Periferias</span><span>População negra</span><span>Povos indígenas</span><span>Quilombolas</span></div><span class="r" data-p="4" data-s="Sumário executivo"></span></div>
+   </div>
+   <div class="panel soft" style="margin-top:26px"><span class="r cr" data-p="23" data-s="Cap. 5"></span><div class="eyebrow">Por isso, os territórios prioritários do documento</div>
+    <div class="tags"><span>Regiões metropolitanas</span><span>Municípios com alta vulnerabilidade climática</span><span>Municípios até 50 mil habitantes (mais restrições técnicas e financeiras)</span><span>Favelas, comunidades e periferias</span></div></div>
+  </div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3><span class="stn">2</span>O risco: o verde pode expulsar quem mora lá</h3><div class="sub">A melhoria ambiental valoriza a área e pode afastar justamente quem deveria beneficiar. É a gentrificação verde.</div></div><span class="r" data-p="15" data-s="Quadro 2"></span></div>
+   <svg class="diag" viewBox="0 0 1200 190" id="gentri"></svg>
+   <p class="illus">Esquema feito para este guia a partir da definição do documento.</p>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3><span class="stn">3</span>A resposta: salvaguardas desde o início</h3><div class="sub">O documento proíbe expulsão, realocação forçada, perda de acesso a recursos comunitários e transferência de encargos aos mais vulneráveis. Três diretrizes dão o princípio; o Eixo 3 diz o que será produzido.</div></div><span class="r" data-p="15" data-s="Quadro 2"></span></div>
+   <div class="g g2" style="gap:44px">
+    <div>
+     <div class="eyebrow">Diretrizes <span class="r" style="border:none" data-p="26" data-s="Cap. 6"></span></div>
+     <div class="sg"><span class="dlink">D7</span><div><h4>Vínculo ao território</h4><p>Adequar às bacias, regimes sazonais, dinâmicas costeiras e práticas comunitárias.</p></div></div>
+     <div class="sg"><span class="dlink">D8</span><div><h4>Participação e justiça climática</h4><p>Escuta, decisão compartilhada e monitoramento participativo em todo o ciclo; prioridade a indígenas, quilombolas, população negra, favelas, crianças, idosos e mulheres.</p></div></div>
+     <div class="sg"><span class="dlink">D9</span><div><h4>Saberes tradicionais</h4><p>Reconhecer e incorporar conhecimentos de povos e comunidades tradicionais, articulados à ciência.</p></div></div>
+    </div>
+    <div>
+     <div class="eyebrow">Eixo 3 · o que será produzido <span class="r" style="border:none" data-p="31" data-s="Quadro 9"></span></div>
+     <div class="sg"><span class="dlink">E3.1</span><div><h4>Regras de participação</h4><p>Requisitos de escuta, cocriação, representação e controle social.</p></div></div>
+     <div class="sg"><span class="dlink">E3.2</span><div><h4>Triagem e integridade</h4><p>Critérios para barrar projetos de risco antes de começarem.</p></div></div>
+     <div class="sg"><span class="dlink">E3.3</span><div><h4>Priorização</h4><p>Quais territórios e populações vêm primeiro.</p></div></div>
+     <div class="sg"><span class="dlink">E3.4 · E3.5</span><div><h4>Economia circular e Taxonomia</h4><p>Guia de economia circular e salvaguardas de SBN na Taxonomia Sustentável Brasileira.</p></div></div>
+    </div>
+   </div>
+  </div>
+  <div class="bridge"><p><b>Fim da Parte 1.</b> A ideia está completa. A Parte 2 mostra o programa em quatro perguntas: <b>quem faz</b>, <b>quanto</b>, <b>o quê</b> e <b>como se verifica</b>.</p><a href="#quem"><small>Parte 2 · 2.1</small><b>Governança →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 05 QUEM FAZ ================= -->
+<div class="view" id="v-quem">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">2.1</div><div><div class="eyebrow">Parte 2 · O programa</div><h2>Governança: quem faz e como dura</h2><p class="q">Quem coordena, quem executa, e como garantir que a SBN continue funcionando?</p></div>
+   <div class="cside"><b>No documento</b>Cap. 4 Governança · PDF 18-21<br>Figura 1 · Quadro 4<br>Diretrizes 10-12 · PDF 26<br>Eixo 4 · PDF 32</div></div>
+  <div class="oneline"><b>Em uma frase</b>A coordenação é pública, a execução é partilhada, e "inaugurar" não é concluir: manutenção e monitoramento fazem parte da intervenção.</div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Seis problemas, seis respostas</h3><div class="sub">O diagnóstico aponta seis lacunas que impediram as SBN de ganhar escala. O programa responde a cada uma.</div></div><span class="r" data-p="12" data-s="§2.1"></span></div>
+   <div class="scrollx"><table class="t pr">
+    <tr><th>Problema (diagnóstico)</th><th>Resposta do programa</th><th>Onde ver</th></tr>
+    <tr><td><b>Conceitual</b> · o conceito é amplo o bastante para chamar de SBN projetos sem ganho ecológico</td><td>Definição oficial, critérios de integridade e triagem de projetos (E3.2)</td><td><a class="dlink" href="#resposta">1.2</a></td></tr>
+    <tr><td><b>Institucional</b> · fragmentação entre órgãos e níveis de governo; descontinuidade</td><td>Coordenação única nas estruturas do PCVR; política de SBN nas normas (E1.1, E1.3)</td><td><a class="dlink" href="#quem">2.1</a></td></tr>
+    <tr><td><b>Territorial</b> · intervenções isoladas, sem relação com bacias, corredores ou costa</td><td>Planejar por bacia e corredor; SBN nos planos de recursos hídricos (E1.5)</td><td><a class="dlink" href="#escala">1.4</a></td></tr>
+    <tr><td><b>Financeira e operacional</b> · dinheiro para a obra, não para projeto, manutenção e monitoramento</td><td>Financiar o ciclo de vida completo; carteira nacional de projetos (Eixo 4)</td><td><a class="dlink" href="#quem">2.1</a></td></tr>
+    <tr><td><b>Informacional</b> · sem dados comparáveis não se mede resultado</td><td>Base nacional de SBN e indicadores mínimos (E1.4, E6.1)</td><td><a class="dlink" href="#medir">2.4</a></td></tr>
+    <tr><td><b>Continuidade</b> · equipes mudam e as intervenções se perdem</td><td>Uma instância territorial responsável por cada SBN, com manutenção prevista (E6.5)</td><td><a class="dlink" href="#quem">2.1</a></td></tr>
+   </table></div>
+   <p class="illus" style="margin-top:10px">Problemas: documento, PDF 12. A ligação problema → resposta foi feita por este guia.</p>
+  </div>
+  <div class="blk feat">
+   <div class="bh"><div><h3>O ciclo de vida de uma SBN</h3><div class="sub">Dinâmico, iterativo e adaptativo - não o modelo linear de uma obra convencional.</div></div><span class="r" data-p="20" data-s="Quadro 4"></span></div>
+   <div class="hint"><span class="dot"></span>Clique numa etapa para ver o papel de cada ator</div>
+   <div class="g g2" style="gap:40px;align-items:center">
+    <svg class="diag" viewBox="-170 0 780 440" id="cycle"></svg>
+    <div><div class="eyebrow">Etapa selecionada</div><h3 id="cycTitle" style="font-size:1.6rem;margin-bottom:18px"></h3><div class="g g2" style="gap:22px" id="cycActors"></div></div>
+   </div>
+   <div class="panel soft" style="margin-top:30px"><span class="r cr" data-p="21" data-s="Cap. 4"></span><h4>Cada intervenção precisa de uma instância territorial responsável</h4><p style="margin:0">Um conselho, comitê, fórum, consórcio ou grupo já existente que pacte: objetivos, usuários e beneficiários, responsabilidades, critérios de sucesso, riscos e salvaguardas, rotinas de manutenção, protocolos de incidentes, dados e devolutivas.</p></div>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Quem coordena</h3></div><span class="r" data-p="19" data-s="Figura 1"></span></div>
+   <p class="say">O <b>MMA</b> coordena e responde politicamente. A <b>SQA/MMA</b> dá o apoio técnico e administra a base nacional de SBN. O <b>Comitê Gestor do PCVR</b>, tripartite, é onde União, estados, municípios, sociedade civil e ciência pactuam. E a <b>Câmara Temática de SBN</b>, ligada ao Comitê, apoia a implementação e o monitoramento. Nenhuma estrutura nova: tudo usa o que o Programa Cidades Verdes Resilientes já criou.</p>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Quem faz o quê</h3></div><span class="r" data-p="19" data-s="Cap. 4"></span></div>
+   <div class="g g4" style="gap:26px 34px">
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="bank"></svg></div><h4>União</h4><p>Coordena, integra políticas, define referências e mantém a base de dados.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="map"></svg></div><h4>Estados e DF</h4><p>Articulação regional, apoio aos municípios, ações supramunicipais.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="city"></svg></div><h4>Municípios</h4><p>Planejam, implementam, operam, mantêm e registram as SBN.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="people"></svg></div><h4>Sociedade civil</h4><p>Cocriação, prioridades, monitoramento e controle social.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="grad"></svg></div><h4>Academia</h4><p>Evidências, protocolos e avaliações.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="tool"></svg></div><h4>Setor privado</h4><p>Desenvolve soluções, fornece insumos, executa.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="coin"></svg></div><h4>Agentes financeiros</h4><p>Financiam e incorporam critérios de SBN.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="eye"></svg></div><h4>Órgãos de controle</h4><p>Fiscalizam recursos e orientam procedimentos.</p></div>
+   </div>
+   <div class="warn">A atuação comunitária não substitui responsabilidades públicas - e trabalho continuado (dados, manutenção, facilitação) deve ter recursos e reconhecimento.</div>
+  </div>
+
+  <details class="deep">
+   <summary>Aprofundar · os nove princípios de governança <span class="r" style="border:none" data-p="18" data-s="Cap. 4"></span></summary>
+   <div class="g g3" style="gap:20px 34px;margin-top:22px" id="princ"></div>
+  </details>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Capacidade e dinheiro</h3><div class="sub">Diretrizes 10-12 e o Eixo 4: financiar o ciclo completo, não só a obra.</div></div><span class="r" data-p="26" data-s="Cap. 6"></span></div>
+   <div class="g g3">
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="grad"></svg></div><span class="dlink">D10</span><h4>Qualificação técnica e comunitária</h4><p>Capacitação interdisciplinar contínua, ligada a trabalho, renda e economia circular e solidária.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="copy"></svg></div><span class="dlink">D11</span><h4>Escalabilidade</h4><p>Compartilhar dados, métodos e boas práticas: soluções replicáveis mas adaptáveis, com atenção aos municípios pequenos.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="coin"></svg></div><span class="dlink">D12</span><h4>Viabilidade econômica</h4><p>Considerar todo o ciclo de vida; diversificar fontes; recursos rastreáveis e gestão transparente.</p></div>
+   </div>
+   <div class="panel soft" style="margin-top:30px"><span class="r cr" data-p="32" data-s="Quadro 10"></span><div class="eyebrow">Eixo 4 · combinação de fontes</div>
+    <div class="tags"><span>Orçamento e fundos públicos</span><span>Banco de Projetos do PCVR</span><span>Carteira nacional de projetos</span><span>Taxonomia Sustentável</span><span>Finanças mistas</span><span>Pagamento por serviços ambientais</span></div></div>
+  </div>
+  <div class="bridge"><p>Já se sabe <b>quem faz</b>. Próxima pergunta: <b>quanto</b> se quer alcançar até 2035.</p><a href="#metas"><small>2.2</small><b>Metas até 2035 →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 2.2 METAS ================= -->
+<div class="view" id="v-metas">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">2.2</div><div><div class="eyebrow">Parte 2 · O programa</div><h2>Metas até 2035</h2><p class="q">Aonde se quer chegar e como se mede o avanço?</p></div>
+   <div class="cside"><b>No documento</b>Cap. 5 Marco estratégico · PDF 22-23<br>Quadro 5 · Figura 2 · PDF 25<br>Períodos · PDF 28</div></div>
+  <div class="oneline"><b>Em uma frase</b>Uma visão para 2035 e uma única meta nacional, medida em municípios, com um marco intermediário em 2030.</div>
+
+  <div class="blk">
+   <div class="g g32">
+    <div class="panel soft"><span class="r cr" data-p="22" data-s="Visão 2035"></span><div class="eyebrow">Visão 2035</div><p style="font-family:'Space Grotesk';font-size:1.35rem;line-height:1.4;margin:0">As SBN deixam de ser iniciativas pontuais e passam a ser <b style="color:var(--green)">eixo estruturante do desenvolvimento ambiental urbano</b>, integradas às políticas, ao financiamento, ao planejamento territorial e à vida cotidiana das cidades.</p></div>
+    <div class="panel"><span class="r cr" data-p="23" data-s="Quadro 5"></span><div class="eyebrow">Meta nacional</div><div class="big" style="font-size:4.2rem">17,5%</div><p style="margin:8px 0 0">dos municípios brasileiros com SBN <b>registradas e implementadas</b> até 2035. Não conta áreas verdes: conta iniciativas que cumprem os critérios e estão na base nacional.</p></div>
+   </div>
+  </div>
+  <div class="blk feat">
+   <div class="bh"><div><h3>A linha do tempo</h3><div class="sub">Metas, fases do plano e avaliações num só eixo.</div></div><span class="r" data-p="23" data-s="Quadro 5"></span></div>
+   <svg class="diag" viewBox="0 0 1200 330" id="timeline"></svg>
+   <p class="illus">Fases: PDF 28 · Meta e marcos: PDF 23 (Quadro 5) · 4,5% é a meta de curto prazo das ações E1.1/E1.4 (PDF 29) · Avaliações: PDF 37.</p>
+  </div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>Como a Estratégia se organiza</h3><div class="sub"><b>Diretrizes</b> orientam, <b>valores públicos</b> dizem que mudança se quer, <b>eixos</b> organizam as ações. Tudo converge para a <b>visão 2035</b>.</div></div><span class="r" data-p="25" data-s="Figura 2"></span></div>
+   <div class="hint"><span class="dot"></span>Clique numa diretriz para ir à seção onde ela é explicada · clique num eixo para ver as suas ações</div>
+   <div class="stack" id="stack"></div>
+  </div>
+  <div class="blk minor">
+   <div class="bh"><div><h3>Os nove objetivos específicos</h3><div class="sub"><b>Objetivo geral:</b> orientar, articular e induzir a implementação íntegra, estratégica e escalável das SBN - eficaz, adaptativa e justa.</div></div><span class="r" data-p="22" data-s="Cap. 5"></span></div>
+   <div class="g g3" style="gap:20px 34px" id="objs"></div>
+  </div>
+  <div class="bridge"><p>Já se sabe <b>quanto</b>. Próxima pergunta: <b>o quê</b>, por quem e quando - 33 ações em seis eixos.</p><a href="#plano"><small>2.3</small><b>Plano de Ação →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 2.3 PLANO ================= -->
+<div class="view" id="v-plano">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">2.3</div><div><div class="eyebrow">Parte 2 · O programa</div><h2>Plano de Ação 2026-2035</h2><p class="q">O que exatamente será feito, por quem e em que fase?</p></div>
+   <div class="cside"><b>No documento</b>Cap. 7 Plano de Ação · PDF 27-34<br>Quadro 6 (eixos) · Quadros 7-12 (matrizes)</div></div>
+  <div class="oneline"><b>Em uma frase</b>Seis eixos e 33 ações, cada uma com entrega, indicador, meta por fase, fonte de verificação e responsável.</div>
+  <div class="blk">
+   <div class="bh"><div><h3>Os seis eixos</h3><div class="sub">Do alicerce institucional (E1) à base de evidências (E6). Clique num cartão para ver as ações na tabela.</div></div><span class="r" data-p="27" data-s="Quadro 6"></span></div>
+   <div class="g g3" style="gap:22px" id="eixoCards"></div><p class="illus" style="margin-top:12px">Nomes curtos e explicações "em palavras simples" são deste guia; o nome oficial de cada eixo aparece no cartão.</p>
+  </div>
+  <div class="blk">
+   <div class="bh"><div><h3>Programas e instrumentos citados</h3><div class="sub">Onde encontrar o que o Plano de Ação menciona. Os links também aparecem ao lado de cada ação na tabela.</div></div></div>
+   <div class="links">
+    <a href="https://www.gov.br/mma/pt-br/centrais-de-conteudo/publicacoes/qualidade-ambiental-e-meio-ambiente-urbano/ensbn-area-urbana.pdf" target="_blank" rel="noopener"><b>ENSBN-Urbana</b><small>O documento completo (PDF, MMA)</small></a>
+    <a href="https://www.gov.br/mma/pt-br/centrais-de-conteudo/publicacoes/qualidade-ambiental-e-meio-ambiente-urbano/pcvr.pdf" target="_blank" rel="noopener"><b>Programa Cidades Verdes Resilientes</b><small>Texto-base com diretrizes e metas · E1.3</small></a>
+    <a href="https://www.gov.br/mma/pt-br/assuntos/meio-ambiente-urbano-recursos-hidricos-qualidade-ambiental/cidades-verdes-resilientes/Banco%20de%20Projetos%20do%20Programa%20Cidades%20Verdes%20e%20Resilientes" target="_blank" rel="noopener"><b>Banco de Projetos do PCVR</b><small>Onde os municípios inscrevem projetos · E4.2</small></a>
+    <a href="https://www.gov.br/fazenda/pt-br/orgaos/spe/taxonomia-sustentavel-brasileira/cadernos" target="_blank" rel="noopener"><b>Taxonomia Sustentável Brasileira</b><small>Cadernos técnicos, Ministério da Fazenda · E3.5, E4.4</small></a>
+    <a href="https://www.escolavirtual.gov.br/" target="_blank" rel="noopener"><b>Escola Virtual de Governo</b><small>Plataforma do futuro curso EAD · E2.1</small></a>
+    <a href="https://conama.mma.gov.br/" target="_blank" rel="noopener"><b>CONAMA</b><small>Onde iria a resolução de licenciamento · E1.6</small></a>
+   </div>
+   <p class="illus" style="margin-top:10px"><span class="tg">guia</span> Links reunidos por este guia. O GEOCAU (E1.4, E6.1) ainda não tem página pública própria localizada.</p>
+  </div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>O Plano de Ação, ação por ação</h3><div class="sub">Metas lado a lado por prazo - compare eixos e fases.</div></div><span class="r" data-p="27" data-s="Quadros 6-12"></span></div>
+   <div class="hint"><span class="dot"></span>Filtre por eixo</div>
+   <div class="chips" id="eixoChips"></div>
+   <div id="eixoInfo"></div>
+   <div class="scrollx"><table class="ptable" id="ptable"></table></div>
+   <div class="warn">No Eixo 5, "estruturados" = projeto elaborado com assistência técnica; "implementados" = executados fisicamente.</div>
+  </div>
+
+  <div class="bridge"><p>Já se sabe <b>o quê</b>. Última pergunta: <b>como se verifica</b> que funciona.</p><a href="#medir"><small>2.4</small><b>Monitoramento →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 07 MEDIR ================= -->
+<div class="view" id="v-medir">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">2.4</div><div><div class="eyebrow">Parte 2 · O programa</div><h2>Monitoramento: saber o que mudou</h2><p class="q">Como verificar se as SBN funcionam - e não apenas se foram construídas?</p></div>
+   <div class="cside"><b>No documento</b>Cap. 8 Monitoramento e avaliação · PDF 36-37<br>Eixo 6 · PDF 34</div></div>
+  <div class="oneline"><b>Em uma frase</b>Monitoramento, Relato e Verificação (MRV): o autorrelato não basta, e os resultados devem alimentar a revisão do próprio plano.</div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Três componentes</h3></div><span class="r" data-p="36" data-s="Cap. 8"></span></div>
+   <div class="g g3">
+    <div class="item"><div class="big">M</div><h4 style="margin-top:8px">Monitoramento</h4><p>Coleta periódica sobre iniciativas, condições territoriais e desempenho socioecológico.</p></div>
+    <div class="item"><div class="big">R</div><h4 style="margin-top:8px">Relato</h4><p>Relatório Anual publicado no site do MMA, em formato aberto, com base na LAI (12.527/2011) e na Lei do Governo Digital (14.129/2021).</p><span class="r" data-p="37"></span></div>
+    <div class="item"><div class="big">V</div><h4 style="margin-top:8px">Verificação</h4><p>Confere a consistência e a aderência aos critérios. O relato dos responsáveis não substitui a verificação.</p><span class="r" data-p="37"></span></div>
+   </div>
+  </div>
+
+  <div class="blk feat">
+   <div class="bh"><div><h3>As cinco perguntas dos relatórios anuais</h3><div class="sub">Da linha de base à decisão futura.</div></div><span class="r" data-p="36" data-s="Cap. 8"></span></div>
+   <div class="flow">
+    <div><div class="big" style="font-size:2rem">1</div><h4>Situação de referência</h4><p style="font-size:.86rem;margin:0">Linha de base: riscos, vulnerabilidades e condições biofísicas antes da intervenção.</p></div>
+    <div><div class="big" style="font-size:2rem">2</div><h4>O que foi realizado</h4><p style="font-size:.86rem;margin:0">Execução física, financeira e temporal; cumprimento de diretrizes e salvaguardas.</p></div>
+    <div><div class="big" style="font-size:2rem">3</div><h4>O que mudou</h4><p style="font-size:.86rem;margin:0">Mudanças biofísicas e microclimáticas; dados municipais + sensoriamento remoto.</p></div>
+    <div><div class="big" style="font-size:2rem">4</div><h4>Desempenho</h4><p style="font-size:.86rem;margin:0">Resultados vs. objetivos, considerando fatores externos.</p></div>
+    <div><div class="big" style="font-size:2rem">5</div><h4>Decisões futuras</h4><p style="font-size:.86rem;margin:0">Ajustar intervenções, políticas e assistência técnica.</p></div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bh"><div><h3>Duas dinâmicas de avaliação</h3></div><span class="r" data-p="37" data-s="Cap. 8"></span></div>
+   <div class="g g2">
+    <div class="panel"><div class="eyebrow">Todos os anos</div><h4>Acompanhamento anual</h4><p>Os responsáveis registram andamento, entregas, resultados e dificuldades; o MMA consolida e identifica desvios.</p></div>
+    <div class="panel soft"><div class="eyebrow">2029 · 2032 · 2035</div><h4>Avaliação estratégica trienal</h4><p>MMA e Comitê Gestor analisam metas, indicadores, lacunas e impactos, e atualizam o Plano de Ação. A de 2035 decide a continuidade da Estratégia.</p></div>
+   </div>
+  </div>
+
+  <div class="blk minor">
+   <div class="bh"><div><h3>A base de evidências (Eixo 6)</h3></div><span class="r" data-p="34" data-s="Quadro 12"></span></div>
+   <div class="g g5" style="gap:24px">
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="db"></svg></div><span class="dlink">E6.1</span><h4>Base nacional de SBN</h4><p>Módulo no GEOCAU + plataforma integrada.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="doc"></svg></div><span class="dlink">E6.2</span><h4>Referências técnicas</h4><p>Planejar, projetar, implantar, avaliar.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="copy"></svg></div><span class="dlink">E6.3</span><h4>Repositório</h4><p>Editais e termos de referência modelo.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="search"></svg></div><span class="dlink">E6.4</span><h4>Pesquisa</h4><p>Estudos aplicados e de longa duração.</p></div>
+    <div class="item"><div class="ib"><svg class="ico" viewBox="0 0 24 24" data-i="refresh"></svg></div><span class="dlink">E6.5</span><h4>Ciclo de vida</h4><p>Orientações de manutenção e avaliação.</p></div>
+   </div>
+  </div>
+  <div class="bridge"><p><b>Fim da Parte 2.</b> A Parte 3 é para pôr em prática: avaliar um projeto, avaliar um plano e, no fim, o que fica em aberto.</p><a href="#projeto"><small>Parte 3 · 3.1</small><b>Avaliar um projeto →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 3.1 PROJETO ================= -->
+<div class="view" id="v-projeto">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">3.1</div><div><div class="eyebrow">Parte 3 · Pôr em prática</div><h2>Avaliar um projeto</h2><p class="q">Uma intervenção concreta conta como SBN segundo a Estratégia?</p></div>
+   <div class="cside"><b>No documento</b>Critérios técnicos · PDF 14<br>Exclusões · Quadro 2 · PDF 15<br><b style="margin-top:10px">Também neste guia</b><a class="dlink" href="#resposta">As três condições (1.2)</a></div></div>
+  <div class="oneline"><b>Em uma frase</b>Pegue num projeto que conhece e passe-o pelos 9 critérios: só conta como SBN se cumprir todos.</div>
+  <div class="blk">
+   <div class="bh"><div><h3>O teste dos 9 critérios</h3><div class="sub">Para avaliar um projeto concreto, o documento define 9 critérios técnicos mínimos, <b>cumulativos</b>. Base: Padrão Global da UICN e Política Nacional de Biodiversidade.</div></div><span class="r" data-p="14" data-s="Critérios técnicos"></span></div>
+   <div class="hint"><span class="dot"></span>Clique nos critérios que o projeto cumpre</div>
+   <div class="g g12" style="gap:30px">
+    <div class="panel soft"><div class="eyebrow">Resultado</div><div class="meter" id="critMeter"></div><p id="critScore" class="disp" style="font-size:1.3rem"></p><button class="btn" id="critReset">Limpar</button></div>
+    <div class="tog" id="crit"></div>
+   </div>
+  </div>
+
+  <div class="bridge"><p>Do projeto ao plano: a mesma lógica aplicada a um instrumento de planejamento.</p><a href="#ferramentas"><small>3.2</small><b>Avaliar um plano →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 08 EM ABERTO ================= -->
+<div class="view" id="v-aberto">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">3.3</div><div><div class="eyebrow">Parte 3 · Pôr em prática</div><h2>O que fica em aberto</h2><p class="q">O que a Estratégia faz bem, e onde a implementação pode tropeçar?</p></div>
+   <div class="cside"><b>Natureza deste capítulo</b>Interpretação deste guia - não é texto do documento. Cada ponto indica a parte do documento em que se apoia.</div></div>
+  <div class="oneline"><b>Em uma frase</b>A grande contribuição é pensar em sistema; a grande tensão é a distância entre a escala funcional, a meta nacional e a capacidade municipal.</div>
+  <div class="blk">
+   <div class="hint"><span class="dot"></span>Clique nas abas para expandir cada ponto</div>
+   <div class="hacc" id="critAcc"></div>
+  </div>
+  <div class="bridge"><p><b>Fim do guia.</b> Siglas, legislação de base e o mapa entre este guia e as páginas do PDF estão no anexo.</p><a href="#fontes"><small>Anexo</small><b>Fontes →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 09 FERRAMENTAS ================= -->
+<div class="view" id="v-ferramentas">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">3.2</div><div><div class="eyebrow">Parte 3 · Pôr em prática</div><h2>Avaliar um plano</h2><p class="q">Um instrumento de planejamento incorpora a lógica da ENSBN?</p></div>
+   <div class="cside"><b>Também neste guia</b><a class="dlink" href="#projeto">Avaliar um projeto (3.1)</a></div></div>
+  <div class="blk">
+   <div class="hint"><span class="dot"></span>Escreva o nome do instrumento e marque o que encontrar; anote os artigos no painel de notas</div>
+   <input class="txt" id="planName" placeholder="Instrumento analisado (ex.: PDM de …)">
+   <div class="g g12" style="gap:30px">
+    <div class="panel soft"><div class="eyebrow">Resultado</div><div class="meter" id="pdmMeter"></div><p id="pdmScore" class="disp" style="font-size:1.3rem"></p></div>
+    <div class="tog" id="pdm" style="grid-template-columns:1fr 1fr"></div>
+   </div>
+  </div>
+  <div class="bridge"><p>Ferramentas usadas, falta a leitura crítica: o que a Estratégia faz bem e onde pode tropeçar.</p><a href="#aberto"><small>3.3</small><b>O que fica em aberto →</b></a></div>
+ </div>
+</div>
+
+<!-- ================= 10 FONTES ================= -->
+<div class="view" id="v-fontes">
+ <div class="wrap">
+  <div class="chead"><div class="cnum">A</div><div><div class="eyebrow">Anexo</div><h2>Fontes: siglas, legislação e mapa do PDF</h2><p class="q">Para voltar ao documento original.</p></div>
+   <div class="cside"><b>No documento</b>Siglas · PDF 6<br>Referências · PDF 40-41</div></div>
+  <div class="blk">
+   <div class="bh"><h3>Mapa: guia ↔ documento</h3></div>
+   <table class="t"><tr><th>Capítulo deste guia</th><th>Capítulos do documento</th><th>PDF</th><th>Impressas</th></tr>
+    <tr><td>1.1 O problema</td><td>Sumário executivo · 1 Introdução · 2 Diagnóstico</td><td>4, 10-11, 16</td><td>6-7, 18-21, 30-31</td></tr>
+    <tr><td>1.2 O que é uma SBN</td><td>3 Delimitação (definição, Quadro 1, critérios, Quadro 2) · Diretrizes 1 e 3</td><td>13-15, 25-26</td><td>24-29, 48-51</td></tr>
+    <tr><td>1.3 Tipos de intervenção</td><td>3 Delimitação (Quadro 1) · Eixo 5</td><td>13-14, 33</td><td>24-27, 64-65</td></tr>
+    <tr><td>1.4 A escala</td><td>3 Delimitação (níveis, Quadro 3) · Diretrizes 2, 4-6</td><td>14, 16-17, 26</td><td>26-27, 30-33, 50-51</td></tr>
+    <tr><td>1.5 Para quem</td><td>2 Diagnóstico · Quadro 2 · 5 Prioridades · Diretrizes 7-9 · Eixo 3</td><td>11, 15, 23, 26, 31</td><td>20-21, 44-45, 60-61</td></tr>
+    <tr><td>2.1 Governança</td><td>§2.1 Lacunas · 4 Governança · Diretrizes 10-12 · Eixo 4</td><td>12, 18-21, 26, 32</td><td>22-23, 34-41, 50-51, 62-63</td></tr>
+    <tr><td>2.2 Metas até 2035</td><td>5 Marco estratégico · Figura 2</td><td>22-23, 25, 28</td><td>42-45, 48-49, 54-55</td></tr>
+    <tr><td>2.3 Plano de Ação</td><td>6 Eixos · 7 Plano de Ação</td><td>27-34</td><td>52-67</td></tr>
+    <tr><td>2.4 Monitoramento</td><td>8 Monitoramento e avaliação · Eixo 6</td><td>34, 36-37</td><td>66-73</td></tr>
+    <tr><td>3.1 Avaliar um projeto</td><td>3 Delimitação (critérios técnicos, Quadro 2)</td><td>14-15</td><td>26-29</td></tr><tr><td>3.3 O que fica em aberto</td><td>Leitura deste guia · 9 Considerações finais</td><td>38-39</td><td>74-77</td></tr></table>
+  </div>
+  <div class="blk">
+   <div class="g g3">
+    <div><div class="bh"><h3 style="font-size:1.2rem">Siglas</h3><span class="r" data-p="6"></span></div><table class="t">
+     <tr><td><b>APP</b></td><td>Área de Preservação Permanente</td></tr><tr><td><b>CBH</b></td><td>Comitê de Bacia Hidrográfica</td></tr><tr><td><b>CEMADEN</b></td><td>Monitoramento e Alertas de Desastres</td></tr><tr><td><b>CG-PCVR</b></td><td>Comitê Gestor do PCVR</td></tr><tr><td><b>CONAMA</b></td><td>Conselho Nacional do Meio Ambiente</td></tr><tr><td><b>CT-SBN</b></td><td>Câmara Temática de SBN</td></tr><tr><td><b>GEOCAU</b></td><td>Cadastro Ambiental Urbano</td></tr><tr><td><b>MRV</b></td><td>Monitoramento, Relato e Verificação</td></tr><tr><td><b>PCVR</b></td><td>Programa Cidades Verdes Resilientes</td></tr><tr><td><b>SQA</b></td><td>Sec. Nac. de Meio Ambiente Urbano, Recursos Hídricos e Qualidade Ambiental</td></tr><tr><td><b>UICN</b></td><td>União Internacional para a Conservação da Natureza</td></tr><tr><td><b>UNEA</b></td><td>Assembleia das Nações Unidas para o Meio Ambiente</td></tr></table></div>
+    <div><div class="bh"><h3 style="font-size:1.2rem">Legislação de base</h3><span class="r" data-p="40"></span></div><table class="t">
+     <tr><td><b>Lei 9.985/2000</b></td><td>SNUC</td></tr><tr><td><b>Dec. 4.339/2002</b></td><td>Política Nacional de Biodiversidade</td></tr><tr><td><b>Lei 12.187/2009</b></td><td>Política Nacional sobre Mudança do Clima</td></tr><tr><td><b>Lei 12.527/2011</b></td><td>Acesso à Informação</td></tr><tr><td><b>Dec. 8.972/2017</b></td><td>Recuperação da Vegetação Nativa</td></tr><tr><td><b>Lei 14.129/2021</b></td><td>Governo Digital</td></tr><tr><td><b>Dec. 12.041/2024</b></td><td>Programa Cidades Verdes Resilientes</td></tr><tr><td><b>Port. 1.283/2025</b></td><td>Comitê Gestor do PCVR</td></tr></table></div>
+    <div><div class="bh"><h3 style="font-size:1.2rem">Base conceitual</h3><span class="r" data-p="41"></span></div><ul class="l"><li>UNEA, Resolução 5/5 (2022) - definição</li><li>IUCN Global Standard for NbS (2020; 2.ª ed. 2026) - critérios</li><li>UNEP (2022) - <i>scaling up</i></li><li>Seddon et al. (2020)</li><li>Sowińska-Świerkosz &amp; García (2022)</li><li>Van der Jagt et al. (2023)</li><li>Brink &amp; Wamsler (2018)</li></ul>
+     <p class="illus" style="margin-top:16px">Síntese feita a partir das leituras de apoio, com os números principais conferidos no PDF. Para citar, use sempre o PDF original.</p></div>
+   </div>
+  </div>
+  <div style="height:60px"></div>
+ </div>
+</div>
+
+<div class="drawer" id="drawer">
+  <div class="dh"><b class="disp" id="drawerTitle">Notas</b><button class="btn" id="drawerClose">Fechar</button></div>
+  <textarea id="noteArea" placeholder="Escreva as suas notas deste capítulo…"></textarea>
+  <div class="dn">As notas ficam guardadas só neste navegador, uma por capítulo.</div>
+</div>
+
+<script>
+const S={get(k,d){try{const v=localStorage.getItem('ensbn3:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('ensbn3:'+k,JSON.stringify(v))}catch(e){}}};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const C={deep:'#1b2b22',green:'#2f6b4f',gsoft:'#e6efe8',lime:'#c5d96a',clay:'#c4683a',csoft:'#f6e6da',blue:'#3a82a6',bsoft:'#e2eef4',sand:'#eeeae1',line:'#e2ded4',ink:'#1e2723',muted:'#6a746e',white:'#fff',bg:'#f6f4ef'};
+const NS='http://www.w3.org/2000/svg';
+function el(t,a,p,x){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(x!==undefined)e.textContent=x;if(p)p.appendChild(e);return e;}
+function wrapT(p,x,y,s,max,a,lh){const w=s.split(' ');let l='',L=[];w.forEach(v=>{if((l+' '+v).trim().length>max){L.push(l.trim());l=v}else l+=' '+v});L.push(l.trim());L.forEach((t,i)=>el('text',Object.assign({x,y:y+i*(lh||16)},a),p,t));return L.length;}
+
+/* ---------- icons ---------- */
+const I={people:'M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20c0-3 2.7-5 6-5s6 2 6 5M16 5.5a3 3 0 0 1 0 5.5M18 15c2 .6 3 2.3 3 4.5',doc:'M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7',mega:'M3 10v4h3l8 5V5l-8 5zM18 9a4 4 0 0 1 0 6',pool:'M3 6v12h18V6M3 12h18M7 9h.01M17 15h.01',wave:'M2 9c2.5-2 5-2 7.5 0s5 2 7.5 0 3-1.5 5-1M2 15c2.5-2 5-2 7.5 0s5 2 7.5 0 3-1.5 5-1',squeeze:'M3 20h18M7 20V9h4v11M13 14c2-1 3-3 6-3M13 17c2-1 4-2 8-2',book:'M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5',bank:'M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18',map:'M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15',coin:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15 9.5c-.6-1-1.7-1.5-3-1.5-1.6 0-2.7.8-2.7 2s1.1 1.7 2.7 2 2.7.8 2.7 2-1.1 2-2.7 2c-1.3 0-2.4-.5-3-1.5M12 6.5V8M12 16v1.5',db:'M12 3c4.4 0 8 1.3 8 3s-3.6 3-8 3-8-1.3-8-3 3.6-3 8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3',refresh:'M20 11a8 8 0 0 0-14.9-3M4 4v4h4M4 13a8 8 0 0 0 14.9 3M20 20v-4h-4',drop:'M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z',shield:'M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z',flower:'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM12 9V4M12 20v-5M9 12H4M20 12h-5M9.9 9.9 6.3 6.3M17.7 17.7l-3.6-3.6M14.1 9.9l3.6-3.6M6.3 17.7l3.6-3.6',tree:'M12 22v-6M12 3l-6 8h3l-3 5h12l-3-5h3z',sprout:'M12 21v-9M12 12c0-4-3-6-7-6 0 4 3 6 7 6zM12 10c0-3 2-6 7-6 0 4-3 6-7 6zM6 21h12',city:'M3 21h18M5 21V8l6-3v16M11 21V10h8v11M8 10h.01M8 13h.01M8 16h.01M14 13h2M14 16h2',neq:'M5 9h14M5 15h14M16 5 8 19',leaf:'M5 19c0-8 6-14 14-14 0 8-6 14-14 14zM5 19l8-8',net:'M5 5h4v4H5zM15 5h4v4h-4zM10 15h4v4h-4zM9 7h6M7 9l4 6M17 9l-4 6',rain:'M6 14a4 4 0 0 1 .5-8 5 5 0 0 1 9.5 1.5A3.5 3.5 0 0 1 17 14zM8 17v3M12 17v3M16 17v3',infil:'M3 8h18M3 8v13h18V8M8 11v6l-2-2M16 11v6l2-2M12 11v6',tank:'M5 4h14v16H5zM5 12h14M9 15h6',evap:'M12 21v-5M7 16h10l-5-8zM8 6c1-1 0-2 1-3M12 6c1-1 0-2 1-3M16 6c1-1 0-2 1-3',alert:'M12 3 2 20h20zM12 10v4M12 17h.01',home:'M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6',grad:'M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5',tool:'M14 6l4 4M3 21l9-9M12 4l8 8-3 3-8-8z',eye:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',copy:'M8 8h12v12H8zM4 16V4h12',search:'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5',check:'M4 12l5 5L20 6',scale:'M12 3v18M7 21h10M4 7h16M7 7l-3 7h6zM17 7l-3 7h6z',chart:'M4 20V10M10 20V4M16 20v-7M22 20H2',sun:'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4',mount:'M2 20l7-12 4 6 3-4 6 10z',wall:'M3 21h18M5 21V5h14v16M5 9h14M5 13h14M5 17h14',link:'M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1 1M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1-1'};
+function icon(n){return `<svg class="ico" viewBox="0 0 24 24"><path d="${I[n]}"/></svg>`;}
+/* ---------- ícones ilustrados (90x90, duas cores, paleta do guia) ---------- */
+const P={g1:'#2f6b4f',g2:'#4f8a63',g3:'#8fb39c',lm:'#c5d96a',br:'#6b4f36',so:'#9a7b58',bl:'#3a82a6',sk:'#e2eef4',sa:'#eeeae1',gs:'#e6efe8',gr:'#a5a49c',lt:'#d9d4c7',cl:'#c4683a',cs:'#f6e6da',ink:'#1e2723',cl2:'#a5b4be'};
+const tree=(x,y,r,c)=>`<rect x="${x-1.5}" y="${y}" width="3" height="${r*0.9}" fill="${P.br}"/><circle cx="${x}" cy="${y-r*0.3}" r="${r}" fill="${c||P.g1}"/>`;
+const rain=(xs,y)=>xs.map(x=>`<path d="M${x} ${y} v8" stroke="${P.bl}" stroke-width="2.5" stroke-linecap="round"/>`).join('');
+const down=(x,y,l)=>`<path d="M${x} ${y} v${l} m-4 -4 l4 4 l4 -4" stroke="${P.bl}" stroke-width="2" fill="none"/>`;
+const IL={
+arvore:[P.gs,`<rect x="42" y="52" width="6" height="26" fill="${P.br}"/><circle cx="45" cy="38" r="22" fill="${P.g1}"/><circle cx="32" cy="46" r="14" fill="${P.g2}"/><circle cx="58" cy="44" r="13" fill="${P.g2}"/><circle cx="40" cy="30" r="6" fill="${P.lm}"/><rect x="14" y="78" width="62" height="4" fill="${P.so}"/>`],
+jardimChuva:[P.sk,`<rect x="8" y="46" width="22" height="6" fill="${P.gr}"/><rect x="60" y="46" width="22" height="6" fill="${P.gr}"/><path d="M30 46 Q45 72 60 46 Z" fill="${P.so}"/><path d="M34 52 Q45 64 56 52 Z" fill="${P.bl}"/><path d="M36 46 v-12 M36 40 l-5 -5 M36 38 l5 -6 M54 46 v-14 M54 38 l-6 -5 M54 36 l5 -5" stroke="${P.g1}" stroke-width="3" fill="none" stroke-linecap="round"/>${rain([38,45,52],14)}${down(45,66,12)}`],
+telhadoVerde:[P.sa,`<rect x="18" y="38" width="54" height="42" fill="${P.lt}"/><rect x="26" y="48" width="10" height="10" fill="#fff"/><rect x="54" y="48" width="10" height="10" fill="#fff"/><rect x="40" y="62" width="10" height="18" fill="${P.so}"/><rect x="14" y="32" width="62" height="7" fill="${P.g2}"/><circle cx="24" cy="30" r="5" fill="${P.g1}"/><circle cx="38" cy="28" r="6" fill="${P.g1}"/><circle cx="54" cy="29" r="5" fill="${P.g1}"/><circle cx="66" cy="30" r="4" fill="${P.g1}"/><circle cx="46" cy="27" r="3" fill="${P.lm}"/>`],
+paredeVerde:[P.sa,`<rect x="20" y="14" width="40" height="66" fill="${P.lt}"/><rect x="26" y="22" width="10" height="10" fill="#fff"/><rect x="26" y="42" width="10" height="10" fill="#fff"/><rect x="58" y="14" width="10" height="66" fill="${P.g2}"/>${[18,28,38,48,58,68].map(y=>`<circle cx="${y%20?60:66}" cy="${y}" r="5" fill="${P.g1}"/>`).join('')}<circle cx="64" cy="42" r="3" fill="${P.lm}"/><rect x="12" y="80" width="66" height="4" fill="${P.so}"/>`],
+hortaPredio:[P.sa,`<rect x="16" y="40" width="58" height="40" fill="${P.lt}"/><rect x="24" y="50" width="10" height="10" fill="#fff"/><rect x="56" y="50" width="10" height="10" fill="#fff"/><rect x="14" y="34" width="62" height="7" fill="${P.so}"/><g fill="${P.g2}"><path d="M24 34 q-5 -8 0 -13 q5 5 0 13z"/><path d="M38 34 q-6 -10 0 -16 q6 6 0 16z"/><path d="M52 34 q-5 -8 0 -13 q5 5 0 13z"/><path d="M66 34 q-6 -10 0 -16 q6 6 0 16z"/></g><circle cx="38" cy="25" r="2.5" fill="${P.cl}"/><circle cx="66" cy="26" r="2.5" fill="${P.cl}"/>`],
+piso:[P.sa,`<g fill="#b9b3a6"><rect x="10" y="30" width="20" height="10"/><rect x="34" y="30" width="20" height="10"/><rect x="58" y="30" width="22" height="10"/><rect x="10" y="44" width="10" height="10"/><rect x="24" y="44" width="20" height="10"/><rect x="48" y="44" width="20" height="10"/><rect x="72" y="44" width="8" height="10"/></g><g fill="${P.g2}"><rect x="10" y="40" width="70" height="4"/><rect x="10" y="54" width="70" height="4"/></g><rect x="10" y="58" width="70" height="20" fill="${P.so}"/>${down(30,60,12)}${down(60,60,12)}${rain([30,45,60],14)}`],
+biovaleta:[P.sk,`<rect x="0" y="40" width="90" height="10" fill="${P.gr}"/><path d="M0 50 H90 V70 C60 60 30 60 0 70Z" fill="${P.g3}"/><path d="M0 62 C30 54 60 54 90 62" stroke="${P.bl}" stroke-width="4" fill="none"/><path d="M14 52 v-8 M24 54 v-10 M66 54 v-10 M76 52 v-8" stroke="${P.g1}" stroke-width="3" stroke-linecap="round"/>${rain([30,45,60],16)}<path d="M70 62 h12 m-4 -4 l4 4 l-4 4" stroke="${P.bl}" stroke-width="2" fill="none"/><rect x="0" y="70" width="90" height="20" fill="${P.so}"/>`],
+canteiro:[P.sk,`<rect x="6" y="30" width="30" height="8" fill="${P.gr}"/><rect x="36" y="38" width="44" height="32" fill="${P.so}"/><rect x="36" y="38" width="44" height="6" fill="${P.g2}"/><path d="M14 34 h20 m-4 -4 l4 4 l-4 4" stroke="${P.bl}" stroke-width="2" fill="none"/>${tree(58,30,12,P.g1)}${down(46,48,14)}${down(70,48,14)}`],
+trincheira:[P.sa,`<rect x="0" y="34" width="90" height="56" fill="${P.so}"/><rect x="30" y="34" width="30" height="40" fill="#b9b3a6"/>${[0,1,2,3].map(r=>[0,1,2].map(c=>`<circle cx="${36+c*9}" cy="${42+r*9}" r="3" fill="${P.gr}"/>`).join('')).join('')}${rain([35,45,55],14)}${down(45,76,10)}<rect x="0" y="30" width="30" height="4" fill="${P.g2}"/><rect x="60" y="30" width="30" height="4" fill="${P.g2}"/>`],
+detencao:[P.gs,`<path d="M0 40 C20 40 24 66 45 66 C66 66 70 40 90 40 V90 H0Z" fill="${P.g3}"/><path d="M22 54 C30 62 60 62 68 54 C60 66 30 66 22 54Z" fill="${P.bl}"/>${tree(12,30,9,P.g1)}${tree(78,30,9,P.g1)}<path d="M30 50 v-6 M60 50 v-6 M45 56 v-6" stroke="${P.g1}" stroke-width="3" stroke-linecap="round"/>${rain([35,45,55],14)}`],
+inundacao:[P.sk,`<path d="M0 50 H90 V90 H0Z" fill="${P.g3}"/><path d="M0 58 C30 52 60 64 90 56 V70 C60 78 30 66 0 72Z" fill="${P.bl}"/><path d="M0 54 C30 48 60 60 90 52" stroke="${P.bl}" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>${tree(16,40,9,P.g1)}${tree(74,38,10,P.g1)}<rect x="36" y="34" width="16" height="16" fill="${P.lt}"/><path d="M34 34 l10 -8 l10 8z" fill="${P.cl}"/>`],
+miniFloresta:[P.gs,`<rect x="8" y="76" width="74" height="6" fill="${P.so}"/>${tree(20,52,12,P.g2)}${tree(34,46,14,P.g1)}${tree(50,50,13,P.g2)}${tree(64,44,15,P.g1)}${tree(76,56,9,P.g2)}<circle cx="34" cy="38" r="4" fill="${P.lm}"/><circle cx="64" cy="36" r="4" fill="${P.lm}"/>`],
+corredor:[P.gs,`<rect x="0" y="0" width="90" height="90" fill="${P.sa}"/><rect x="6" y="10" width="20" height="20" fill="${P.lt}"/><rect x="64" y="60" width="20" height="20" fill="${P.lt}"/><rect x="62" y="8" width="22" height="16" fill="${P.lt}"/><rect x="6" y="62" width="22" height="18" fill="${P.lt}"/><path d="M0 70 C30 60 40 30 90 20" stroke="${P.g3}" stroke-width="18" fill="none"/>${[[14,64],[30,54],[44,40],[60,30],[78,24]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="${P.g1}"/>`).join('')}`],
+fauna:[P.gs,`<rect x="0" y="56" width="90" height="12" fill="${P.gr}"/><path d="M0 62 h90" stroke="#fff" stroke-width="1.5" stroke-dasharray="6 5"/><path d="M10 56 C20 30 70 30 80 56" fill="${P.g3}"/><path d="M18 56 C28 38 62 38 72 56" fill="${P.sk}"/><rect x="0" y="52" width="90" height="4" fill="${P.g2}"/>${tree(12,40,8,P.g1)}${tree(78,40,8,P.g1)}<ellipse cx="45" cy="34" rx="7" ry="4" fill="${P.br}"/><circle cx="52" cy="31" r="3" fill="${P.br}"/><path d="M39 34 l-5 -2" stroke="${P.br}" stroke-width="2"/>`],
+praca:[P.gs,`<rect x="8" y="70" width="74" height="8" fill="${P.lt}"/><rect x="56" y="52" width="4" height="18" fill="${P.br}"/><circle cx="58" cy="40" r="16" fill="${P.g1}"/><circle cx="50" cy="44" r="8" fill="${P.g2}"/><rect x="14" y="58" width="30" height="4" fill="${P.cl}"/><rect x="16" y="62" width="3" height="8" fill="${P.br}"/><rect x="39" y="62" width="3" height="8" fill="${P.br}"/><rect x="14" y="50" width="30" height="3" fill="${P.cl}"/><circle cx="74" cy="56" r="3" fill="${P.ink}"/><rect x="72" y="59" width="4" height="11" fill="${P.bl}"/>`],
+parqueLinear:[P.sk,`<path d="M0 60 C25 50 40 74 90 58 V90 H0 Z" fill="${P.g3}"/><path d="M0 66 C25 56 40 80 90 64" stroke="${P.bl}" stroke-width="6" fill="none"/>${tree(18,48,9,P.g1)}${tree(72,44,10,P.g1)}<circle cx="46" cy="50" r="7" fill="${P.g2}"/><path d="M8 82 C30 76 54 88 82 80" stroke="${P.lm}" stroke-width="2.5" fill="none" stroke-dasharray="4 3"/>`],
+rio:[P.sk,`<path d="M0 50 H90 V90 H0Z" fill="${P.g3}"/><path d="M0 64 C20 52 34 78 54 64 S80 58 90 66" stroke="${P.bl}" stroke-width="10" fill="none"/>${tree(14,44,8,P.g1)}${tree(40,48,9,P.g2)}${tree(70,42,10,P.g1)}<path d="M8 26 l10 -6 l10 6 M58 22 l8 -5 l8 5" stroke="${P.gr}" stroke-width="2" fill="none"/>`],
+renatural:[P.sk,`<rect x="0" y="0" width="44" height="90" fill="${P.sa}"/><rect x="10" y="40" width="24" height="40" fill="${P.gr}"/><rect x="14" y="44" width="16" height="32" fill="${P.bl}"/><path d="M38 60 h10 m-4 -4 l4 4 l-4 4" stroke="${P.ink}" stroke-width="2" fill="none"/><path d="M50 52 C62 48 78 50 90 46 V90 H50Z" fill="${P.g3}"/><path d="M52 74 C62 64 74 80 90 68" stroke="${P.bl}" stroke-width="7" fill="none"/>${tree(60,46,7,P.g1)}${tree(80,42,8,P.g1)}`],
+margem:[P.sk,`<path d="M0 30 L60 74 H90 V90 H0Z" fill="${P.so}"/><path d="M0 30 L60 74" stroke="${P.g2}" stroke-width="8"/><rect x="60" y="74" width="30" height="16" fill="${P.bl}"/>${[[12,32],[28,44],[44,56]].map(p=>`<circle cx="${p[0]}" cy="${p[1]-4}" r="7" fill="${P.g1}"/>`).join('')}<path d="M20 52 l4 10 M36 64 l4 8" stroke="${P.br}" stroke-width="2"/>`],
+fito:[P.sk,`<rect x="0" y="56" width="90" height="34" fill="${P.bl}"/><rect x="0" y="56" width="90" height="34" fill="#7a6a4a" opacity=".35"/>${[16,32,48,64,78].map(x=>`<path d="M${x} 58 v-22 M${x} 46 l-5 -6 M${x} 42 l5 -7" stroke="${P.g1}" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M${x} 58 v14 m-4 0 l4 -6 l4 6" stroke="${P.br}" stroke-width="1.5" fill="none"/>`).join('')}`],
+hortaCom:[P.sa,`<rect x="10" y="56" width="70" height="22" fill="${P.so}"/><g fill="${P.g2}"><path d="M22 56 q-6 -10 0 -16 q6 6 0 16z"/><path d="M38 56 q-7 -12 0 -20 q7 8 0 20z"/><path d="M54 56 q-6 -10 0 -16 q6 6 0 16z"/><path d="M70 56 q-7 -12 0 -20 q7 8 0 20z"/></g><circle cx="38" cy="44" r="3" fill="${P.cl}"/><circle cx="70" cy="46" r="3" fill="${P.cl}"/><path d="M10 64 h70 M10 71 h70" stroke="#7d6248" stroke-width="1"/>`],
+mangue:[P.sk,`<rect x="0" y="56" width="90" height="34" fill="${P.bl}"/><path d="M28 58 l-6 18 M28 58 l0 20 M28 58 l6 18 M60 56 l-6 20 M60 56 l0 22 M60 56 l7 19" stroke="${P.br}" stroke-width="2.5" fill="none"/><circle cx="28" cy="44" r="14" fill="${P.g1}"/><circle cx="60" cy="40" r="16" fill="${P.g1}"/><circle cx="44" cy="46" r="9" fill="${P.g2}"/>`],
+costaHibrida:[P.sk,`<rect x="0" y="62" width="90" height="28" fill="${P.bl}"/><path d="M0 40 H40 L58 66 H0Z" fill="${P.sa}"/><path d="M40 40 L58 66" stroke="${P.gr}" stroke-width="6"/>${[[46,50],[52,58]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${P.g2}"/>`).join('')}<path d="M66 64 l-3 12 M66 64 v14 M66 64 l4 12" stroke="${P.br}" stroke-width="2" fill="none"/><circle cx="66" cy="56" r="8" fill="${P.g1}"/>${tree(18,30,8,P.g1)}`],
+duna:[P.sk,`<rect x="0" y="66" width="90" height="24" fill="${P.bl}"/><path d="M0 66 C20 40 40 40 56 66Z" fill="#e3d3a8"/><path d="M30 66 C46 46 66 48 90 66Z" fill="#d6c38f"/><path d="M14 54 v-6 M22 48 v-6 M50 56 v-6 M62 52 v-6 M72 56 v-6" stroke="${P.g2}" stroke-width="3" stroke-linecap="round"/>`],
+nascente:[P.gs,`<path d="M0 30 C30 26 50 46 90 40 V90 H0Z" fill="${P.g3}"/>${tree(16,24,10,P.g1)}${tree(70,30,11,P.g1)}<ellipse cx="42" cy="50" rx="10" ry="5" fill="${P.bl}"/><path d="M42 54 C40 64 54 70 50 90" stroke="${P.bl}" stroke-width="5" fill="none"/>${tree(28,52,6,P.g2)}${tree(60,56,6,P.g2)}`],
+area:[P.gs,`<rect x="10" y="14" width="70" height="66" fill="none" stroke="${P.g1}" stroke-width="2" stroke-dasharray="5 4"/>${tree(26,40,10,P.g1)}${tree(46,34,12,P.g2)}${tree(64,42,10,P.g1)}${tree(34,62,8,P.g2)}${tree(58,64,8,P.g1)}`],
+encosta:[P.sa,`<path d="M0 82 L70 22 L90 22 V90 H0 Z" fill="${P.so}"/><path d="M0 82 L70 22" stroke="${P.g2}" stroke-width="6"/><circle cx="24" cy="58" r="7" fill="${P.g1}"/><circle cx="44" cy="42" r="8" fill="${P.g1}"/><circle cx="62" cy="28" r="6" fill="${P.g1}"/><rect x="16" y="76" width="20" height="14" fill="${P.lt}"/><path d="M14 76 l12 -8 l12 8z" fill="${P.cl}"/>`],
+bacia:[P.gs,`<path d="M45 10 C70 14 84 34 80 54 C76 74 56 84 40 80 C20 76 8 56 12 36 C16 20 28 10 45 10Z" fill="${P.g3}"/><path d="M45 78 V48 M45 60 L28 44 M45 52 L62 34 M45 66 L64 58 M28 44 L22 30 M62 34 L66 22" stroke="${P.bl}" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="45" cy="78" r="3.5" fill="${P.bl}"/>`],
+chuva:[P.sk,`<circle cx="34" cy="34" r="13" fill="${P.cl2}"/><circle cx="52" cy="30" r="16" fill="${P.cl2}"/><circle cx="66" cy="38" r="10" fill="${P.cl2}"/><rect x="24" y="38" width="52" height="10" fill="${P.cl2}"/><path d="M30 56 l-4 10 M44 56 l-4 10 M58 56 l-4 10 M72 56 l-4 10 M37 70 l-3 8 M51 70 l-3 8 M65 70 l-3 8" stroke="${P.bl}" stroke-width="3" stroke-linecap="round"/>`],
+calor:[P.cs,`<circle cx="62" cy="28" r="12" fill="${P.cl}"/>${[0,45,90,135,180,225,270,315].map(a=>{const r=a*Math.PI/180;return `<path d="M${62+17*Math.cos(r)} ${28+17*Math.sin(r)} L${62+23*Math.cos(r)} ${28+23*Math.sin(r)}" stroke="${P.cl}" stroke-width="2.5" stroke-linecap="round"/>`}).join('')}<rect x="10" y="46" width="18" height="34" fill="${P.gr}"/><rect x="30" y="56" width="22" height="24" fill="${P.lt}"/><rect x="54" y="62" width="18" height="18" fill="${P.gr}"/><rect x="0" y="80" width="90" height="10" fill="#7d7c75"/><path d="M14 40 c3 -4 -3 -6 0 -10 M40 50 c3 -4 -3 -6 0 -10" stroke="${P.cl}" stroke-width="2" fill="none"/>`],
+pessoas:[P.cs,`<circle cx="30" cy="30" r="8" fill="${P.ink}"/><rect x="22" y="40" width="16" height="26" fill="${P.cl}"/><rect x="23" y="66" width="5" height="14" fill="${P.ink}"/><rect x="32" y="66" width="5" height="14" fill="${P.ink}"/><circle cx="58" cy="36" r="7" fill="${P.br}"/><rect x="51" y="45" width="14" height="22" fill="${P.g1}"/><rect x="52" y="67" width="5" height="13" fill="${P.ink}"/><rect x="59" y="67" width="5" height="13" fill="${P.ink}"/><circle cx="74" cy="56" r="5" fill="${P.ink}"/><rect x="70" y="62" width="9" height="12" fill="${P.bl}"/><rect x="71" y="74" width="3" height="6" fill="${P.ink}"/><rect x="75" y="74" width="3" height="6" fill="${P.ink}"/>`],
+favela:[P.cs,`<path d="M0 86 L90 30 V90 H0Z" fill="${P.so}"/>${[[6,70,'#e0c9a8'],[24,60,P.lt],[42,50,'#e0c9a8'],[60,40,P.lt],[18,76,P.lt],[38,66,'#e9d6b9'],[56,56,P.lt],[74,46,'#e0c9a8']].map(h=>`<rect x="${h[0]}" y="${h[1]}" width="16" height="12" fill="${h[2]}"/><rect x="${h[0]+4}" y="${h[1]+4}" width="4" height="4" fill="${P.ink}" opacity=".5"/>`).join('')}${tree(80,36,7,P.g1)}`],
+piscinao:[P.sa,`<rect x="10" y="40" width="70" height="40" fill="${P.gr}"/><rect x="16" y="46" width="58" height="28" fill="#c9c6bd"/><rect x="16" y="68" width="58" height="6" fill="${P.bl}" opacity=".5"/><path d="M10 36 h70" stroke="${P.ink}" stroke-width="1.5"/>${[14,24,34,44,54,64,74].map(x=>`<path d="M${x} 36 v-10" stroke="${P.ink}" stroke-width="1.5"/>`).join('')}<path d="M10 26 h70" stroke="${P.ink}" stroke-width="1.5"/>`],
+muro:[P.sk,`<rect x="0" y="62" width="90" height="28" fill="${P.bl}"/><path d="M0 46 H50 V66 H0Z" fill="#e3d3a8"/><rect x="50" y="34" width="10" height="34" fill="${P.gr}"/><path d="M60 50 C70 46 80 54 90 50" stroke="#fff" stroke-width="2" fill="none"/><path d="M64 62 C72 58 80 64 88 60" stroke="#fff" stroke-width="2" fill="none"/>${[6,18,30].map(x=>`<rect x="${x}" y="30" width="10" height="16" fill="${P.lt}"/>`).join('')}`],
+cidade:[P.sa,`<rect x="8" y="34" width="16" height="46" fill="${P.gr}"/><rect x="26" y="20" width="18" height="60" fill="${P.lt}"/><rect x="46" y="40" width="14" height="40" fill="${P.gr}"/><rect x="62" y="28" width="18" height="52" fill="${P.lt}"/>${tree(54,74,6,P.g1)}${tree(18,76,5,P.g2)}<rect x="0" y="80" width="90" height="6" fill="#7d7c75"/>`],
+brasil:[P.gs,`<path d="M30 14 L60 12 L74 30 L80 44 L66 66 L52 80 L44 72 L34 54 L16 44 L14 30Z" fill="${P.g3}"/><circle cx="52" cy="50" r="4" fill="${P.cl}"/><circle cx="66" cy="34" r="3" fill="${P.g1}"/><circle cx="44" cy="62" r="3" fill="${P.g1}"/>`],
+dinheiro:[P.cs,`<rect x="14" y="30" width="62" height="34" fill="${P.g3}"/><circle cx="45" cy="47" r="10" fill="${P.g2}"/><path d="M45 40 v14" stroke="#fff" stroke-width="2"/>${tree(70,30,8,P.g1)}<rect x="18" y="66" width="62" height="6" fill="${P.g2}"/>`],
+ciclo:[P.gs,`<circle cx="45" cy="45" r="26" fill="none" stroke="${P.g3}" stroke-width="6"/><path d="M68 32 l4 -10 l-10 3" stroke="${P.g1}" stroke-width="3" fill="none"/>${tree(45,46,10,P.g1)}`],
+lupa:[P.sk,`<circle cx="40" cy="40" r="20" fill="#fff" stroke="${P.ink}" stroke-width="4"/>${tree(40,42,8,P.g1)}<path d="M54 54 l16 16" stroke="${P.ink}" stroke-width="6" stroke-linecap="round"/>`],
+gota:['none',`<path d="M45 12 C45 12 70 42 70 58 A25 25 0 0 1 20 58 C20 42 45 12 45 12Z" fill="${P.bl}"/><path d="M34 58 a11 11 0 0 0 11 11" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>`]
+};
+function il(n,cls){const v=IL[n];if(!v)return '';return `<svg class="il ${cls||''}" viewBox="0 0 90 90" aria-hidden="true">${v[0]==='none'?'':`<rect width="90" height="90" fill="${v[0]}"/>`}${v[1]}</svg>`;}
+
+const CATIL={"Telhados verdes": "telhadoVerde", "Paredes verdes": "paredeVerde", "Hortas e pomares em edificações": "hortaPredio", "Jardins de chuva": "jardimChuva", "Biovaletas": "biovaleta", "Canteiros pluviais": "canteiro", "Pavimentos permeáveis vegetados": "piso", "Trincheiras de infiltração": "trincheira", "Bacias de detenção vegetadas": "detencao", "Áreas de inundação controlada": "inundacao", "Arborização urbana": "arvore", "Miniflorestas urbanas": "miniFloresta", "Corredores verdes urbanos": "corredor", "Passagens de fauna vegetadas": "fauna", "Parques lineares": "parqueLinear", "Renaturalização de rios retificados": "renatural", "Revegetação de margens e taludes": "margem", "Zonas de fitorremediação": "fito", "Hortas e pomares comunitários": "hortaCom", "Estruturas híbridas vivas": "costaHibrida"};
+const IL2={"problema": "chuva", "resposta": "lupa", "tipos": "arvore", "escala": "bacia", "justica": "pessoas"};
+$$('[data-il]').forEach(s=>{s.innerHTML=il(s.dataset.il);});
+$$('svg[data-i]').forEach(s=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',I[s.dataset.i]||'');s.appendChild(p);});
+
+/* ---------- references ---------- */
+function refText(p,s){const n=+p;const pr=n>=10?` · impr. ${2*n-2}-${2*n-1}`:'';return (s?s+' · ':'')+'PDF p. '+p+pr;}
+$$('.r[data-p]').forEach(r=>{r.textContent=refText(r.dataset.p,r.dataset.s);r.title='Documento original: '+refText(r.dataset.p,r.dataset.s);});
+
+/* ---------- routing ---------- */
+const VIEWS=[['abertura','0','Abertura',0],['problema','1.1','O problema',1],['resposta','1.2','O que é uma SBN',1],['tipos','1.3','Tipos de intervenção',1],['escala','1.4','A escala',1],['justica','1.5','Para quem',1],['quem','2.1','Governança',2],['metas','2.2','Metas até 2035',2],['plano','2.3','Plano de Ação',2],['medir','2.4','Monitoramento',2],['projeto','3.1','Avaliar um projeto',3],['ferramentas','3.2','Avaliar um plano',3],['aberto','3.3','O que fica em aberto',3],['fontes','A','Fontes',4]];
+const PARTS=[['0','Abertura'],['1','A ideia'],['2','O programa'],['3','Pôr em prática'],['A','Fontes']];
+$('#nav').innerHTML=PARTS.map((p,i)=>`<a href="#${VIEWS.find(v=>v[3]===i)[0]}" data-p="${i}"><span>${p[0]}</span>${p[1]}</a>`).join('');
+let cur='abertura';
+function route(){const h=location.hash.slice(1);cur=VIEWS.find(v=>v[0]===h)?h:'abertura';
+  const V=VIEWS.find(v=>v[0]===cur),part=V[3];
+  $$('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+cur));
+  $$('#nav a').forEach(a=>a.classList.toggle('on',+a.dataset.p===part));
+  const sb=$('#subbar');
+  if(part===0){sb.style.display='none'}else{sb.style.display='flex';sb.innerHTML=`<span class="pl">${part===4?'Anexo':'Parte '+part} · ${PARTS[part][1]}</span>`+VIEWS.filter(v=>v[3]===part).map(v=>`<a href="#${v[0]}" class="${v[0]===cur?'on':''}"><b>${v[1]}</b>${v[2]}</a>`).join('');}
+  window.scrollTo(0,0);$('#drawerTitle').textContent='Notas · '+V[1]+' '+V[2];$('#noteArea').value=S.get('note:'+cur,'');}
+window.addEventListener('hashchange',route);
+document.addEventListener('keydown',e=>{const em=document.getElementById('exModal');if(em&&!em.hidden){if(e.key==='Escape')closeEx();return;}if(['TEXTAREA','INPUT'].includes(document.activeElement.tagName))return;const i=VIEWS.findIndex(v=>v[0]===cur);if(e.key==='ArrowRight'&&VIEWS[i+1])location.hash=VIEWS[i+1][0];if(e.key==='ArrowLeft'&&VIEWS[i-1])location.hash=VIEWS[i-1][0];});
+$('#notesBtn').onclick=()=>$('#drawer').classList.toggle('open');$('#drawerClose').onclick=()=>$('#drawer').classList.remove('open');$('#noteArea').oninput=e=>S.set('note:'+cur,e.target.value);
+
+/* ---------- story map ---------- */
+(function(){const D={problema:['alert','Uma cadeia em três passos'],resposta:['leaf','A natureza a fazer o trabalho'],tipos:['tree','Proteger, restaurar, restabelecer'],escala:['net','Do jardim de chuva à bacia'],justica:['scale','Justiça socioambiental'],quem:['people','Quem faz e como dura'],metas:['chart','17,5% dos municípios'],plano:['doc','6 eixos, 33 ações'],medir:['eye','Saber o que mudou'],projeto:['check','Os 9 critérios como teste'],aberto:['search','Contribuições e tensões'],ferramentas:['doc','Lista para um Plano Diretor'],fontes:['book','Siglas, leis e mapa do PDF']};
+ const intro=['','O problema, o conceito e a escala: por que e o que são as SBN.','Como o Estado organiza as SBN num programa nacional.','Usar o guia num caso real: um projeto, um plano e o que fica em aberto.'];
+ $('#storyMap').innerHTML=[1,2,3].map(pi=>`<div class="panel" style="padding:24px"><div class="eyebrow">Parte ${pi}</div><h3 style="font-size:1.5rem;margin-bottom:6px">${PARTS[pi][1]}</h3><p style="color:var(--muted);font-size:.9rem;margin-bottom:16px">${intro[pi]}</p>${VIEWS.filter(v=>v[3]===pi).map(v=>`<a href="#${v[0]}" style="display:flex;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink)">${IL2[v[0]]?il(IL2[v[0]],'sm2'):`<span style="color:var(--green)">${icon(D[v[0]][0])}</span>`}<span style="flex:1"><b class="disp" style="color:var(--green);margin-right:6px">${v[1]}</b><b class="disp">${v[2]}</b><br><small style="color:var(--muted)">${D[v[0]][1]}</small></span><span style="color:var(--green)">→</span></a>`).join('')}</div>`).join('');})();
+
+/* ---------- tipos: catálogo ---------- */
+const CAT=[['Edificações','city',[['Telhados verdes','Cobertura vegetada sobre edifícios.'],['Paredes verdes','Vegetação nas fachadas.'],['Hortas e pomares em edificações','Produção de alimentos em telhados e terraços.']]],
+ ['Drenagem e água pluvial','rain',[['Jardins de chuva','Depressão vegetada que recebe e infiltra o escoamento.'],['Biovaletas','Canal vegetado raso que conduz e filtra a água da chuva.'],['Canteiros pluviais','Canteiros que recebem a água de superfícies próximas.'],['Pavimentos permeáveis vegetados','Pisos que deixam a água infiltrar.'],['Trincheiras de infiltração','Valas com material drenante para infiltrar.'],['Bacias de detenção vegetadas','Áreas que retêm temporariamente a cheia.'],['Áreas de inundação controlada','Espaços planejados para alagar sem dano.']]],
+ ['Vegetação e conectividade','net',[['Arborização urbana','Árvores em ruas e espaços públicos.'],['Miniflorestas urbanas','Plantio denso de nativas em áreas pequenas.'],['Corredores verdes urbanos','Faixas contínuas de vegetação que ligam áreas.'],['Passagens de fauna vegetadas','Travessias que reconectam habitats.'],['Parques lineares','Parques ao longo de rios ou eixos urbanos.']]],
+ ['Rios, margens e solo','wave',[['Renaturalização de rios retificados','Devolver ao rio leito, margens e várzea.'],['Revegetação de margens e taludes','Vegetação que estabiliza e protege.'],['Zonas de fitorremediação','Plantas que ajudam a tratar água ou solo contaminado.']]],
+ ['Alimento','sprout',[['Hortas e pomares comunitários','Produção coletiva de alimentos em espaços urbanos.']]],
+ ['Costa','wall',[['Estruturas híbridas vivas','Suporte construído combinado com ecossistemas costeiros vivos.']]]];
+$('#catChips').innerHTML='<button class="on" data-i="-1"><b>Todos</b> 20</button>'+CAT.map((c,i)=>`<button data-i="${i}">${icon(c[1])}<b>${c[0]}</b> ${c[2].length}</button>`).join('');
+const EXEMPLOS={"Telhados verdes": [["Shopping Eldorado", "São Paulo (SP)", "Cobertura vegetada desde 2012, com horta adubada pelo composto dos restos da praça de alimentação.", "https://www.saopaulo.sp.leg.br/blog/sustentabilidade-projeto-de-shopping-vai-alem-telhado-verde/", "Câmara Municipal de SP"], ["Lei dos telhados verdes", "Recife (PE)", "A Lei 18.112/2015 passou a exigir cobertura vegetada em novos edifícios com mais de quatro pavimentos.", "https://www.legisweb.com.br/legislacao/?id=280138", "LegisWeb"]], "Paredes verdes": [["Corredor verde da Av. 23 de Maio", "São Paulo (SP)", "Jardins verticais instalados em 2017 ao longo de cerca de seis quilômetros de muro.", "https://istoedinheiro.com.br/uma-23-de-maio-verde-em-pleno-inverno", "IstoÉ Dinheiro"], ["Jardins verticais do Minhocão", "São Paulo (SP)", "Retirados por falhas de manutenção: lembra que a parede verde só funciona com custeio contínuo.", "https://www.folhavitoria.com.br/geral/em-sp-retirada-de-jardins-verticais-do-minhocao-expoe-fracasso-de-corredor-verde/", "Folha Vitória"]], "Hortas e pomares em edificações": [["Horta no telhado do Shopping Eldorado", "São Paulo (SP)", "Horta sobre a laje desde 2012; a colheita é distribuída aos funcionários das lojas.", "https://revistapesquisa.fapesp.br/a-vez-da-agricultura-urbana/", "Revista Pesquisa FAPESP"]], "Jardins de chuva": [["Jardins de chuva da Subprefeitura Sé", "São Paulo (SP)", "Dezenas de jardins de chuva, vagas verdes e calçadas com poços de infiltração no centro.", "https://prefeitura.sp.gov.br/noticia/avenida-23-de-maio-ganha-a-primeira-biovaleta-da-capital", "Prefeitura de São Paulo"], ["Green Streets", "Portland (EUA)", "Jardins de chuva entre a rua e a calçada recebem o escoamento antes do esgoto; piloto em 2003, política da cidade desde 2007.", "https://www.portland.gov/bes/stormwater/about-green-streets", "City of Portland"], ["Parque Lagoa do Nado", "Belo Horizonte (MG)", "Caso fotografado no próprio documento.", null, "ENSBN, PDF 21"]], "Biovaletas": [["Biovaleta da Av. 23 de Maio", "São Paulo (SP)", "A primeira da cidade (2020): 500 m sob os viadutos Dona Paulina e Brigadeiro Luiz Antônio, filtrando a água da avenida.", "https://prefeitura.sp.gov.br/noticia/avenida-23-de-maio-ganha-a-primeira-biovaleta-da-capital", "Prefeitura de São Paulo"], ["Green Streets", "Portland (EUA)", "Biovaletas ao longo de ruas residenciais retardam, filtram e infiltram a água da chuva.", "https://www.portland.gov/bes/stormwater/about-green-streets", "City of Portland"]], "Canteiros pluviais": [["SW 12th Avenue Green Street", "Portland (EUA)", "Primeiro projeto a transformar a faixa do passeio numa série de canteiros pluviais, mantendo o estacionamento na rua.", "https://sdstudio.be.uw.edu/wp-content/uploads/sites/51/downloads/Autumn2008/Portland_Green_Streets.pdf", "Univ. of Washington (estudo de caso)"]], "Pavimentos permeáveis vegetados": [["Pavimento permeável experimental", "Recife (PE)", "840 m² de blocos intertravados permeáveis numa área antes impermeável, avaliados em estudo científico.", "https://doaj.org/article/e6417ffcee5e448f90f33b736e77ddbf", "Rev. Brasileira de Ciências Ambientais"], ["Praça D. Pedro II", "Jundiaí (SP)", "Revitalização com piso drenante para a água não acumular na superfície.", "https://jundiai.sp.gov.br/noticias/2013/08/30/obras-de-revitalizacao-da-praca-d-pedro-ii-terao-piso-drenante", "Prefeitura de Jundiaí"]], "Trincheiras de infiltração": [["Calçadas com poços de infiltração", "São Paulo (SP)", "Fazem parte do conjunto de jardins de chuva e biovaletas da Subprefeitura Sé.", "https://prefeitura.sp.gov.br/noticia/avenida-23-de-maio-ganha-a-primeira-biovaleta-da-capital", "Prefeitura de São Paulo"], ["Trincheiras de Carlsberg Byen", "Copenhague (DIN)", "Trincheiras e bacias no bairro seguram a chuva antes de a enviar para o parque Enghaveparken.", "https://engtech.dtu.dk/english/-/media/institutter/engineering_technology/undervisning/ipw26/materiale/carlsberg-enghave-plads-and-kalvebod-tunnel.pdf", "DTU"]], "Bacias de detenção vegetadas": [["Enghaveparken", "Copenhague (DIN)", "Parque de 1928 reformado com bacias rebaixadas e um dique: retém 22.600 m³ numa chuva de 100 anos.", "https://en.klimatilpasning.dk/cases/items/the-enghaveparken-climate-parken-in-copenhagen-now-attracts-both-people-and-stormwater-drainoff/", "Klimatilpasning.dk"]], "Áreas de inundação controlada": [["Parques de várzea do Tietê", "Região Metropolitana de SP", "Parques estaduais em várzea funcionam como esponja nas cheias.", "https://semil.sp.gov.br/2025/04/parques-urbanos-estaduais-de-varzea-a-solucao-natural-que-retem-32-bilhoes-de-litros-para-ajudar-no-combate-as-enchentes-em-sao-paulo/", "SEMIL-SP"], ["Enghaveparken", "Copenhague (DIN)", "Na chuva extrema o parque fecha e enche: o espaço público é a própria bacia.", "https://issuu.com/iaks/docs/sb_4-2021_en_small_8eaa9ae9e5eab7/s/13252013", "IAKS"]], "Arborização urbana": [["Corredores Verdes", "Medellín (COL)", "Arborização em 18 ruas e 12 cursos d'água; a prefeitura reporta queda de mais de 2 °C.", "https://www.unep.org/pt-br/noticias-e-reportagens/reportagem/cidade-colombiana-adota-solucoes-naturais-para-combater-o-calor", "PNUMA"]], "Miniflorestas urbanas": [["Floresta de Bolso do Parque Cândido Portinari", "São Paulo (SP)", "Mata Atlântica plantada em mutirão num antigo pátio de obras do Metrô (2016), técnica do botânico Ricardo Cardim.", "https://semil.sp.gov.br/?p=62174", "SEMIL-SP"], ["Floresta de Bolso da Marginal Pinheiros", "São Paulo (SP)", "Cerca de 70 espécies nativas plantadas à beira da via expressa.", "https://catracalivre.com.br/quem-inova/marginal-pinheiros-tera-maior-floresta-de-bolso-da-cidade/", "Catraca Livre"]], "Corredores verdes urbanos": [["Corredores Verdes", "Medellín (COL)", "30 corredores ligam ruas, córregos e parques; prémio Ashden 2019.", "https://www.ecycle.com.br/medellin-cria-corredores-verdes-para-combater-calor/", "eCycle"]], "Passagens de fauna vegetadas": [["Viaduto vegetado da BR-101", "Silva Jardim (RJ)", "Primeiro viaduto vegetado do país (2020): liga a Rebio Poço das Antas à APA do Rio São João, habitat do mico-leão-dourado.", "https://www.jb.com.br/pais/ecologia/2020/08/1024960-viaduto-vegetado-para-mico-leao-dourado-e-concluido-no-rio-de-janeiro.html", "Jornal do Brasil"], ["Monitoramento das passagens", "BR-101 (RJ)", "Mais de 4 mil travessias de 28 espécies registadas desde 2020.", "https://www.portaldotransito.com.br/noticias/mobilidade-e-tecnologia/seguranca/arteris-registra-mais-de-4-mil-animais-nas-passagens-de-fauna-da-br-101-rj/", "Portal do Trânsito"]], "Parques lineares": [["Parque das Graças (Parque Capibaribe)", "Recife (PE)", "1 km de parque na margem do Capibaribe, onde antes se previa uma via para carros.", "https://portaldeprefeitura.com.br/bastidores-da-politica/prefeito-joao-campos-entrega-terceira-etapa-do-parque-das-gracas-e-pro/513386/", "Portal de Prefeitura"], ["Parque Rachel de Queiroz", "Fortaleza (CE)", "Caso fotografado no próprio documento.", null, "ENSBN, PDF 38"]], "Renaturalização de rios retificados": [["Cheonggyecheon", "Seul (COR)", "Viaduto rodoviário demolido e córrego reaberto em 2005, num corredor de cerca de 5,8 km.", "https://landscapeperformance.org/case-study-briefs/cheonggyecheon-stream-restoration", "Landscape Performance Series"]], "Revegetação de margens e taludes": [["Drenurbs", "Belo Horizonte (MG)", "Córregos mantidos em leito aberto, com recomposição de mata ciliar (Primeiro de Maio, Baleares, N. Sra. da Piedade).", "https://repositorio.ufmg.br//bitstreams/d54bd177-254c-41d0-9f7c-f29a7847385e/download", "UFMG"], ["Drenurbs em números", "Belo Horizonte (MG)", "47 bacias e cerca de 200 km de cursos d'água, com financiamento do BID.", "https://prefeitura.pbh.gov.br/sites/default/files/estrutura-de-governo/obras-e-infraestrutura/drenurbs-2_comusa_fev-2025.pdf", "Prefeitura de Belo Horizonte"]], "Zonas de fitorremediação": [["Jardim filtrante do Parque Caiara", "Recife (PE)", "Tanques vegetados tratam por gravidade a água do Riacho do Cavouco; caso também fotografado no documento.", "https://www.folhape.com.br/noticias/jardins-filtrantes-irao-despoluir-riacho-do-cavouco-no-recife/214970/", "Folha de Pernambuco"], ["Parque Rachel de Queiroz", "Fortaleza (CE)", "Primeiro sistema municipal de alagados construídos em espaço público, para reabilitar o Riacho Cachoeirinha.", "https://repositorio.ufc.br/bitstream/riufc/77005/4/2024_dis_mgcappleyard.pdf", "UFC"]], "Hortas e pomares comunitários": [["Horta de Manguinhos (Hortas Cariocas)", "Rio de Janeiro (RJ)", "Do tamanho de quatro campos de futebol, sob uma linha de alta tensão, desde 2013; o programa municipal existe desde 2006.", "https://outraspalavras.net/outrasmidias/em-manguinhos-a-potencia-das-hortas-urbanas/", "Outras Palavras / DW"], ["Horta das Corujas", "São Paulo (SP)", "Primeira horta comunitária em praça pública da cidade (2012), com 800 m² cuidados por voluntários.", "https://catracalivre.com.br/cidadania/horta-das-corujas-rotina-dedicada-ao-meio-ambiente-e-cidade/", "Catraca Livre"]], "Estruturas híbridas vivas": [["Living shorelines", "EUA", "Plantas, areia, pedra ou conchas de ostra no lugar do muro; segundo a NOAA, resistem melhor a tempestades do que a costa endurecida.", "https://www.fisheries.noaa.gov/insight/understanding-living-shorelines", "NOAA Fisheries"], ["Soluções híbridas", "EUA", "Enrocamento ou soleiras com vegetação em costas de mais energia; o componente rígido sacrifica parte dos benefícios.", "https://www.nps.gov/articles/natural-and-nature-based-features.htm", "National Park Service"]]};
+const EXNOTA={"Telhados verdes": "A lei do Recife foi depois substituída (Lei 19.426/2025). Exigir por lei não garante adesão: estudos locais apontam pouca aplicação.", "Paredes verdes": "É a intervenção do catálogo com menor ganho ecológico por m² e maior custo de manutenção. Vale aplicar as três condições de 1.2.", "Pavimentos permeáveis vegetados": "Os dois casos são de piso drenante; a versão vegetada (grelha com grama) segue a mesma lógica.", "Áreas de inundação controlada": "Atenção ao 1.5: o programa Várzeas do Tietê previa reassentar milhares de famílias que moravam na várzea.", "Passagens de fauna vegetadas": "O caso é rodoviário e não urbano, mas a técnica é a mesma para avenidas que cortam parques.", "Renaturalização de rios retificados": "Custo e manutenção altos: parte da água do córrego é bombeada. Bom exemplo para discutir trade-offs.", "Estruturas híbridas vivas": "Não há caso brasileiro fácil de documentar; é exatamente a frente E5.6 do Plano de Ação."};
+function cat(i){$$('#catChips button').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));const L=i<0?CAT:[CAT[i]];
+ $('#catCards').innerHTML=L.map(c=>c[2].map(it=>`<button type="button" class="card exc" data-n="${it[0]}" data-g="${c[0]}" data-d="${it[1]}">${il(CATIL[it[0]]||'arvore','cd')}<div><h4>${it[0]}</h4><p>${it[1]}</p><small style="color:var(--muted);font-size:.72rem">${c[0]}</small><span class="more">Onde já foi feito →</span></div></button>`).join('')).join('');
+ $$('#catCards .exc').forEach(b=>b.onclick=()=>openEx(b.dataset.n,b.dataset.g,b.dataset.d));}
+function openEx(n,g,d){const L=EXEMPLOS[n]||[];const m=$('#exModal');
+ m.querySelector('.exb').innerHTML=`<div class="exhead">${il(CATIL[n]||'arvore','exi')}<div><div class="eyebrow">Tipo 3 · ${g}</div><h3>${n}</h3><p>${d}</p></div></div>
+ <div class="eyebrow" style="margin-top:22px">Onde já foi feito</div>
+ <ol class="exl">${L.map(e=>`<li><b>${e[0]}</b><span class="loc">${e[1]}</span><p>${e[2]}</p>${e[3]?`<a class="acc" href="${e[3]}" target="_blank" rel="noopener">Acesse aqui ↗</a><small class="src">Fonte: ${e[4]}</small>`:`<span class="r" style="border:none">${e[4]}</span>`}</li>`).join('')}</ol>
+ ${EXNOTA[n]?`<div class="warn" style="margin-top:14px">${EXNOTA[n]}</div>`:''}
+ <p class="illus" style="margin-top:16px"><span class="tg">guia</span> Exemplos escolhidos por este guia, não citados no documento. As fotos estão nas páginas das fontes.</p>`;
+ m.hidden=false;document.body.classList.add('modal');m.querySelector('.exx').focus();}
+function closeEx(){$('#exModal').hidden=true;document.body.classList.remove('modal');}
+$$('#catChips button').forEach(b=>b.onclick=()=>cat(+b.dataset.i));cat(-1);
+
+/* ---------- problema ---------- */
+(function(){const s=$('#waffle');let k=0;for(let r=0;r<10;r++)for(let c=0;c<10;c++){el('rect',{x:c*22,y:r*22,width:19,height:19,fill:k<66?C.clay:C.sand},s);k++;}})();
+function cx(s,m){el('rect',{x:0,y:0,width:560,height:250,fill:'#eef4f7'},s);
+ if(m==='g'){el('rect',{x:0,y:130,width:560,height:120,fill:'#a5a49c'},s);el('rect',{x:0,y:122,width:200,height:10,fill:'#7d7c75'},s);el('rect',{x:360,y:122,width:200,height:10,fill:'#7d7c75'},s);
+  el('path',{d:'M200 122 V222 H360 V122',fill:'none',stroke:'#5b5a54','stroke-width':12},s);el('rect',{x:206,y:172,width:148,height:44,fill:C.blue},s);
+  [[60,40],[130,40],[430,40],[500,40]].forEach(p=>el('path',{d:`M${p[0]} ${p[1]} v50 m-7 -9 l7 9 l7 -9`,stroke:'#5b5a54','stroke-width':2,fill:'none'},s));
+  el('path',{d:'M70 112 H190 m-9 -6 l9 6 l-9 6',stroke:C.clay,'stroke-width':2.5,fill:'none'},s);el('path',{d:'M490 112 H370 m9 -6 l-9 6 l9 6',stroke:C.clay,'stroke-width':2.5,fill:'none'},s);
+  el('text',{x:280,y:200,'text-anchor':'middle','font-size':12,fill:'#fff'},s,'escoamento rápido');el('text',{x:16,y:240,'font-size':11,fill:'#fff'},s,'solo impermeável · sem infiltração');}
+ else{el('path',{d:'M0 125 C100 125 140 135 190 175 C225 205 335 205 370 175 C420 135 460 125 560 125 V250 H0z',fill:'#9a7b58'},s);el('path',{d:'M205 185 C240 210 320 210 355 185Z',fill:C.blue},s);
+  el('path',{d:'M150 150 C185 165 205 185 215 192 L345 192 C355 185 375 165 410 150',fill:'none',stroke:C.blue,'stroke-width':2,'stroke-dasharray':'5 4'},s);
+  [[30,125],[75,125],[120,128],[160,145],[400,145],[440,128],[485,125],[530,125]].forEach((p,i)=>{el('rect',{x:p[0]-3,y:p[1]-26,width:6,height:26,fill:'#30493b'},s);el('rect',{x:p[0]-14,y:p[1]-54,width:28,height:32,fill:i%2?C.green:'#5b8a6a'},s);});
+  [[50,150],[120,155],[440,155],[510,150]].forEach(p=>el('path',{d:`M${p[0]} ${p[1]} v45 m-6 -8 l6 8 l6 -8`,stroke:C.blue,'stroke-width':2.2,fill:'none'},s));
+  el('text',{x:280,y:168,'text-anchor':'middle','font-size':11,fill:C.ink},s,'inundação controlada');el('text',{x:16,y:240,'font-size':11,fill:'#fff'},s,'infiltração e recarga');}}
+cx($('#cxGrey'),'g');cx($('#cxGreen'),'v');
+(function(){const s=$('#invest');if(!s)return;el('text',{x:0,y:20,'font-size':13,fill:C.muted},s,'Pavimentação e saneamento tradicional');el('rect',{x:0,y:30,width:740,height:36,fill:C.sand},s);el('rect',{x:0,y:30,width:614,height:36,fill:C.clay},s);el('text',{x:626,y:56,'font-size':22,'font-weight':700,fill:C.ink},s,'83%');
+ el('text',{x:0,y:104,'font-size':13,fill:C.muted},s,'Adaptação climática e resiliência ambiental');el('rect',{x:0,y:114,width:740,height:36,fill:C.sand},s);el('rect',{x:0,y:114,width:3,height:36,fill:C.green},s);el('text',{x:12,y:140,'font-size':22,'font-weight':700,fill:C.green},s,'0,1%');})();
+
+/* ---------- resposta: criteria ---------- */
+const CR=[['Desafios territoriais prioritários','Responde a um problema diagnosticado e beneficia as pessoas'],['Escala socioecológica adequada','Considera escalas de processos ecológicos, hídricos e sociais'],['Proteção e recuperação biótica','Contribui diretamente para a biodiversidade'],['Exequibilidade operacional','Viabilidade técnica, econômica e financeira; manutenção garantida'],['Governança participativa','Transparência, participação e direitos locais'],['Trade-offs e salvaguardas ambientais','Identifica e evita impactos negativos'],['Acompanhamento adaptativo','Manutenção, monitoramento e ajustes previstos'],['Ancoragem territorial','Respeita saberes e o contexto cultural local'],['Resiliência e capacidade adaptativa','Pessoas e natureza preparadas para extremos']];
+function toggleGrid(box,items,key,upd){const st=S.get(key,{});box.innerHTML=items.map((c,i)=>`<button data-i="${i}" class="${st[i]?'on':''}"><span class="bx">${st[i]?'✓':i+1}</span><span><b>${c[0]}</b><small>${c[1]}</small></span></button>`).join('');
+ box.querySelectorAll('button').forEach(b=>b.onclick=()=>{const i=b.dataset.i;st[i]=!st[i];b.classList.toggle('on',st[i]);b.querySelector('.bx').textContent=st[i]?'✓':+i+1;S.set(key,st);upd(st);});upd(st);
+ return()=>{for(const k in st)delete st[k];S.set(key,st);toggleGrid(box,items,key,upd);};}
+const meter=(m,n,t)=>m.innerHTML=Array.from({length:t},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('');
+const rc=toggleGrid($('#crit'),CR,'crit',st=>{const n=Object.values(st).filter(Boolean).length;meter($('#critMeter'),n,9);$('#critScore').innerHTML=n===9?'<span style="color:var(--green)">9/9 - enquadra-se como SBN.</span><br><small style="font-family:Inter;font-size:.85rem;color:var(--muted)">Confira também os critérios de exclusão.</small>':`${n}/9 critérios<br><small style="font-family:Inter;font-size:.85rem;color:var(--muted)">Ainda não se enquadra como SBN.</small>`;});
+$('#critReset').onclick=rc;
+
+/* ---------- escala: levels ---------- */
+const LV=[{t:'Componente',s:'Intervenção pontual',d:'Solução localizada para um desafio específico.',e:['Jardim de chuva que capta o escoamento de um estacionamento','Recuperação de uma faixa de mata ciliar','Telhado verde','Troca de superfície impermeável por solo e vegetação']},
+ {t:'Arranjo',s:'Conjunto integrado num local',d:'Componentes coordenados que funcionam juntos num espaço delimitado.',e:['Parque linear com jardins de chuva, biovaletas, infiltração e mata ciliar','Loteamento com pavimentos permeáveis, bacias de detenção e arborização viária','Microbacia com nascentes recuperadas, terraceamento e vegetação nativa']},
+ {t:'Sistema',s:'Rede territorial multiescalar',d:'Intervenções e arranjos conectados aos processos da paisagem e do território.',e:['Rede metropolitana de parques lineares integrada ao plano de drenagem','Corredor ecológico ligando áreas protegidas, remanescentes urbanos e rurais','Rede de hortas comunitárias e agricultura urbana','Estratégia costeira intermunicipal de manguezais, dunas e restingas']}];
+function drawLevels(sel){const s=$('#levels');s.innerHTML='';
+ LV.forEach((l,i)=>{const x=i*300,g=el('g',{class:'clk'},s);g.onclick=()=>drawLevels(i);const on=sel===i;
+  el('rect',{x:x+4,y:4,width:278,height:322,fill:on?C.gsoft:C.white,stroke:on?C.green:C.white,'stroke-width':2},g);
+  el('text',{x:x+22,y:38,'font-size':12,fill:C.green,'letter-spacing':2},g,'NÍVEL '+(i+1));
+  el('text',{x:x+22,y:68,'font-size':24,'font-weight':700,fill:C.ink},g,l.t);
+  el('text',{x:x+22,y:90,'font-size':13,fill:C.muted},g,l.s);
+  const cx=x+143,cy=215,fc=C.green;
+  if(i===0)el('rect',{x:cx-22,y:cy-22,width:44,height:44,fill:fc},g);
+  if(i===1){el('rect',{x:cx-80,y:cy-72,width:160,height:144,fill:'none',stroke:C.muted,'stroke-dasharray':'5 4'},g);el('path',{d:`M${cx-40} ${cy-35} L${cx} ${cy} L${cx+32} ${cy-38} M${cx} ${cy} L${cx-35} ${cy+32} M${cx} ${cy} L${cx+36} ${cy+28}`,stroke:fc,'stroke-width':2,fill:'none'},g);[[-40,-35],[32,-38],[-35,32],[36,28],[0,0]].forEach(p=>el('rect',{x:cx+p[0]-13,y:cy+p[1]-13,width:26,height:26,fill:fc},g));}
+  if(i===2){const P=[[-105,-80],[-60,-45],[-100,5],[-40,20],[10,-70],[60,-30],[20,40],[90,10],[105,-75],[70,75],[-70,80],[0,90]];
+   el('path',{d:`M${cx-125} ${cy+55} C${cx-60} ${cy+20} ${cx} ${cy+70} ${cx+125} ${cy+30}`,stroke:C.blue,'stroke-width':6,fill:'none'},g);
+   [[0,1],[1,3],[1,4],[3,6],[4,5],[5,7],[4,8],[7,9],[2,3],[6,11],[10,11],[6,9]].forEach(e=>el('path',{d:`M${cx+P[e[0]][0]} ${cy+P[e[0]][1]} L${cx+P[e[1]][0]} ${cy+P[e[1]][1]}`,stroke:fc,'stroke-width':1.5},g));
+   P.forEach(p=>el('rect',{x:cx+p[0]-7,y:cy+p[1]-7,width:14,height:14,fill:fc},g));}
+  el('text',{x:x+22,y:312,'font-size':11,fill:on?C.green:C.muted},g,on?'● selecionado':'clique para ver →');
+  if(i<2)el('path',{d:`M${x+286} 160 l10 8 l-10 8z`,fill:C.green},s);});
+ const l=LV[sel];$('#levelDetail').innerHTML=`<span class="tag">NÍVEL ${sel+1}</span><h3 style="font-size:1.5rem">${l.t} de SBN</h3><p>${l.d}</p><div class="eyebrow" style="margin-top:16px">Exemplos do documento</div><ul class="l">${l.e.map(x=>`<li>${x}</li>`).join('')}</ul><span class="r">${refText(14)}</span>`;}
+drawLevels(0);
+
+const SC={fora:{t:'Fora do escopo',c:C.clay,d:'<ul class="l"><li>Projetos exclusivamente rurais sem relação funcional com desafios urbanos</li><li>Conservação estrita sem essa relação</li><li>Infraestrutura convencional sem componente biótico central</li><li>Intervenções que não cumprem os critérios de SBN</li></ul>',p:17},
+ func:{t:'Escopo funcional',c:C.blue,d:'Ultrapassa o perímetro urbano. Conta quando influencia a cidade ou é pressionado por ela:<ul class="l"><li>Bacias e sub-bacias hidrográficas</li><li>Zonas de recarga e mananciais</li><li>Corredores ecológicos</li><li>Sistemas alimentares</li><li>Ecossistemas costeiro-marinhos</li></ul><div class="warn">Ex.: proteger nascentes fora do perímetro urbano conta, se abastecem a cidade.</div>',p:17},
+ dir:{t:'Escopo direto',c:C.green,d:'Onde as intervenções acontecem:<ul class="l"><li>Áreas urbanizadas (critério IBGE) e de expansão urbana</li><li>Áreas periurbanas - transição campo-cidade</li><li>Áreas costeiras urbanas</li><li>Espaços públicos <b>e privados</b> com função socioecológica</li></ul><p style="font-size:.88rem;color:var(--muted)">A definição legal de área urbana é competência municipal (uso e ocupação do solo, zoneamento).</p>',p:16}};
+function drawScope(sel){const s=$('#scope');s.innerHTML='';
+ const L=(k,x,y,w,h,fill,lab,tc)=>{const g=el('g',{class:'clk'},s);g.onclick=e=>{e.stopPropagation();drawScope(k)};el('rect',{x,y,width:w,height:h,fill,stroke:sel===k?C.ink:'none','stroke-width':2.5},g);el('text',{x:x+18,y:y+30,'font-size':14,'font-weight':700,fill:tc,'letter-spacing':1.5},g,lab);};
+ L('fora',0,0,800,420,C.sand,'FORA DO ESCOPO',C.clay);
+ L('func',60,52,680,320,C.bsoft,'ESCOPO FUNCIONAL',C.blue);
+ el('path',{d:'M60 290 C200 250 260 330 400 290 S600 240 740 280',stroke:C.blue,'stroke-width':7,fill:'none','pointer-events':'none'},s);
+ el('text',{x:640,y:262,'font-size':11,fill:C.blue,'pointer-events':'none'},s,'rio / bacia');
+ [[110,110],[150,95],[650,110],[690,135],[110,340],[690,340]].forEach(p=>el('rect',{x:p[0],y:p[1],width:14,height:14,fill:'#8fb39c','pointer-events':'none'},s));
+ L('dir',230,110,340,180,C.gsoft,'ESCOPO DIRETO',C.green);
+ for(let i=0;i<5;i++)for(let j=0;j<3;j++)el('rect',{x:258+i*58,y:158+j*38,width:40,height:24,fill:'#b9c9bd','pointer-events':'none'},s);
+ el('text',{x:780,y:405,'text-anchor':'end','font-size':11,fill:C.muted},s,'clique numa camada');
+ const it=SC[sel];$('#scopeDetail').innerHTML=`<span class="tag" style="background:${it.c}">${it.t.toUpperCase()}</span><h3 style="font-size:1.5rem;margin-bottom:8px">${it.t}</h3>${it.d}<span class="r">${refText(it.p,'Quadro 3')}</span>`;}
+drawScope('dir');
+
+/* ---------- justiça: gentrification ---------- */
+(function(){const s=$('#gentri');const st=[['Intervenção verde','parque, corredor, margem de rio'],['Valorização','imobiliária da área'],['Custo de permanência','aluguéis e preços sobem'],['Deslocamento','de quem já vivia ali']];const w=260;
+ st.forEach((t,i)=>{const x=i*w+20;el('rect',{x,y:30,width:220,height:100,fill:i===3?C.csoft:C.white},s);el('text',{x:x+16,y:62,'font-size':12,fill:i===3?C.clay:C.muted},s,'0'+(i+1));el('text',{x:x+16,y:88,'font-size':17,'font-weight':600,fill:C.ink},s,t[0]);el('text',{x:x+16,y:110,'font-size':12,fill:C.muted},s,t[1]);if(i<3)el('path',{d:`M${x+226} 80 h28 m-8 -6 l8 6 l-8 6`,stroke:C.clay,'stroke-width':2,fill:'none'},s);});
+ el('path',{d:'M130 140 V165 H1000 V140',stroke:C.green,'stroke-width':2,fill:'none','stroke-dasharray':'5 4'},s);
+ el('rect',{x:420,y:152,width:340,height:28,fill:C.gsoft},s);el('text',{x:590,y:171,'text-anchor':'middle','font-size':13,'font-weight':600,fill:C.green},s,'Salvaguardas: participação, direitos, prioridade local');})();
+
+/* ---------- quem: cycle ---------- */
+const CY=[['Engajamento',['Garantir articulação e canais de participação','Mobilizar moradores e apresentar demandas locais','Apoiar metodologias de diálogo','Identificar oportunidades de cooperação e fornecimento']],
+ ['Diagnóstico',['Verificar conformidade territorial, mapear riscos, sistematizar dados','Apontar pontos críticos e o uso histórico do espaço','Estudos biofísicos, modelagens, linha de base','Avaliar viabilidade técnica e operacional']],
+ ['Planejamento e metas',['Diretrizes, parâmetros e estimativa orçamentária','Oficinas de codesenho; pactuar salvaguardas','Parâmetros técnicos e de integridade ecológica','Alternativas técnicas e estudos de viabilidade']],
+ ['Implementação',['Contratações, prazos e fiscalização','Acompanhar e participar das intervenções','Acompanhar parâmetros ecológicos, testes e ajustes','Executar obras, serviços e intervenções especializadas']],
+ ['Manutenção',['Assegurar recursos, contratos e arranjos institucionais','Zeladoria compartilhada','Protocolos de manejo ecológico','Serviços de operação, manutenção e conservação']],
+ ['Monitoramento e avaliação',['Integrar indicadores e avaliar eficácia','Retorno sobre satisfação, segurança e benefícios','Coletar dados e medir resultados socioecológicos','Reportar desempenho técnico e funcional']],
+ ['Aprendizagem compartilhada',['Incorporar aprendizados a políticas e planos','Compartilhar experiências','Sistematizar evidências e publicar','Disseminar boas práticas']]];
+const ACT=[['Poder público','bank'],['Sociedade civil','people'],['Academia','grad'],['Setor privado','tool']];
+function drawCycle(sel){const s=$('#cycle');s.innerHTML='';const cx=220,cy=220,R=160;
+ el('circle',{cx,cy,r:R,fill:'none',stroke:C.line,'stroke-width':2},s);
+ el('text',{x:cx,y:cy-4,'text-anchor':'middle','font-size':13,fill:C.muted,'letter-spacing':2},s,'CICLO DE VIDA');
+ el('text',{x:cx,y:cy+24,'text-anchor':'middle','font-size':24,fill:C.green},s,'↻');
+ CY.forEach((c,i)=>{const a=-Math.PI/2+i*2*Math.PI/CY.length,x=cx+R*Math.cos(a),y=cy+R*Math.sin(a),on=i===sel;const g=el('g',{class:'clk'},s);g.onclick=()=>drawCycle(i);
+  el('rect',{x:x-26,y:y-26,width:52,height:52,fill:on?C.green:C.white,stroke:C.green,'stroke-width':2},g);
+  el('text',{x,y:y+7,'text-anchor':'middle','font-size':20,'font-weight':700,fill:on?'#fff':C.green},g,i+1);
+  const ca=Math.cos(a),sa=Math.sin(a);const lx=x+(ca>.2?36:ca<-.2?-36:0),ly=y+(sa>.5?46:sa<-.5?-36:5);
+  el('text',{x:lx,y:ly,'text-anchor':ca>.2?'start':ca<-.2?'end':'middle','font-size':14,'font-weight':on?700:500,fill:on?C.green:C.ink},g,c[0]);});
+ $('#cycTitle').innerHTML=`<span style="color:var(--green)">${sel+1}.</span> ${CY[sel][0]}`;
+ $('#cycActors').innerHTML=ACT.map((a,j)=>`<div class="item"><div class="ib" style="width:38px;height:38px;margin-bottom:8px">${icon(a[1])}</div><h4 style="font-size:.9rem;color:var(--green)">${a[0]}</h4><p>${CY[sel][1][j]}</p></div>`).join('');}
+drawCycle(0);
+
+const ORG={mma:['MMA','Instância executiva, coordenadora e articuladora central','Liderança política e técnica; propõe normas federais; gere diretrizes e critérios de enquadramento; articula outros órgãos federais.'],
+ sqa:['SQA/MMA','Apoio técnico-administrativo','Coordena a implementação e administra a base de dados nacional de SBN.'],
+ cg:['CG-PCVR','Colegiado consultivo e de pactuação federativa','Comitê Gestor do PCVR (Portaria Interministerial MMA/MCTI/MCID nº 1.283/2025). Tripartite: governo federal, entes subnacionais, sociedade civil e sistema de C&T.'],
+ ct:['CT-SBN','Órgão subsidiário de apoio','Câmara Temática de SBN, vinculada ao CG-PCVR; apoia coordenação, implementação e monitoramento.']};
+function drawOrg(sel){const s=$('#org');s.innerHTML='';
+ const B=(k,x,y,w,h)=>{const on=sel===k,g=el('g',{class:'clk'},s);g.onclick=()=>drawOrg(k);el('rect',{x,y,width:w,height:h,fill:on?C.green:C.white,stroke:C.green,'stroke-width':on?0:1.5},g);el('text',{x:x+18,y:y+34,'font-size':21,'font-weight':700,fill:on?'#fff':C.ink},g,ORG[k][0]);wrapT(g,x+18,y+58,ORG[k][1],36,{'font-size':12,fill:on?'#dfeee4':C.muted},15);};
+ ['M380 108 V148 H190 V186','M380 148 H570 V186','M570 276 V290'].forEach(d=>el('path',{d,stroke:C.green,'stroke-width':1.5,fill:'none'},s));
+ B('mma',230,18,300,90);B('sqa',40,186,300,90);B('cg',420,186,300,90);B('ct',420,290,300,90);
+ const o=ORG[sel];$('#orgDetail').innerHTML=`<span class="tag">${o[0]}</span><h3 style="font-size:1.4rem;margin-bottom:8px">${o[1]}</h3><p>${o[2]}</p><span class="r">${refText(19,'Figura 1')}</span>`;}
+if($('#org'))drawOrg('mma');
+
+$('#princ').innerHTML=[['Ancoragem regulatória','Parâmetros de SBN nos instrumentos normativos e de ordenamento.'],['Arranjos multiescalares','Articulação vertical entre governos e horizontal entre órgãos e consórcios.'],['Ciência e saberes locais','Decisões com evidências e conhecimentos tradicionais.'],['Transparência e dados abertos','Custos, projetos, desempenho e benefícios públicos.'],['Participação e cocriação','Do problema à manutenção.'],['Governança adaptativa','Monitoramento, zeladoria compartilhada e ajustes.'],['Justiça e salvaguardas','Benefícios equitativos; contra gentrificação verde.'],['Planejamento sistêmico','Paisagem e bacia além dos limites administrativos.'],['Financiamento de ciclo completo','Mecanismos permanentes, incluindo finanças mistas.']].map((p,i)=>`<div class="item" style="display:flex;gap:14px"><div class="disp" style="font-size:1.4rem;color:var(--green);font-weight:700;min-width:26px">${i+1}</div><div><h4>${p[0]}</h4><p>${p[1]}</p></div></div>`).join('');
+
+/* ---------- caminho ---------- */
+(function(){const s=$('#timeline');const X=y=>70+(y-2026)*118,Y=v=>250-v*10;
+ [[2026,2030,'#dfe9e2','Curto prazo'],[2030,2033,'#cfe0d4','Médio prazo'],[2033,2035.6,'#bfd5c6','Longo prazo']].forEach(b=>{el('rect',{x:X(b[0]),y:40,width:X(b[1])-X(b[0]),height:210,fill:b[2]},s);el('text',{x:X(b[0])+10,y:58,'font-size':12,'font-weight':600,fill:C.green},s,b[3]);});
+ [0,5,10,15,20].forEach(v=>{el('path',{d:`M${X(2026)} ${Y(v)} H${X(2035.6)}`,stroke:'#fff','stroke-width':1},s);el('text',{x:60,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:C.muted},s,v+'%');});
+ for(let y=2026;y<=2035;y++)el('text',{x:X(y),y:272,'text-anchor':'middle','font-size':12,fill:C.ink},s,y);
+ el('path',{d:`M${X(2027)} 66 V250`,stroke:C.ink,'stroke-width':1,'stroke-dasharray':'4 4'},s);el('text',{x:X(2027)+6,y:82,'font-size':11,fill:C.ink},s,'2027 · linha de base');
+ el('path',{d:`M${X(2029)} ${Y(4.5)} L${X(2030)} ${Y(8.75)} L${X(2035)} ${Y(17.5)}`,stroke:C.green,'stroke-width':3,fill:'none'},s);
+ [[2029,4.5,'4,5%'],[2030,8.75,'8,75%'],[2035,17.5,'17,5%']].forEach(p=>{el('rect',{x:X(p[0])-7,y:Y(p[1])-7,width:14,height:14,fill:p[0]===2035?C.clay:C.green},s);el('text',{x:X(p[0])-12,y:Y(p[1])-12,'text-anchor':'end','font-size':18,'font-weight':700,fill:C.ink},s,p[2]);});
+ 
+ [2029,2032,2035].forEach(y=>{el('rect',{x:X(y)-9,y:290,width:18,height:18,fill:C.deep},s);});
+ el('rect',{x:X(2026)-4,y:294,width:10,height:10,fill:'none',stroke:C.deep},s);
+ el('text',{x:X(2026)+14,y:304,'font-size':11,fill:C.muted},s,'relatório anual');
+ el('text',{x:X(2029)+16,y:304,'font-size':11,fill:C.ink},s,'avaliação trienal');el('text',{x:X(2032)+16,y:304,'font-size':11,fill:C.ink},s,'avaliação trienal');el('text',{x:X(2035)-16,y:324,'text-anchor':'end','font-size':11,fill:C.ink},s,'avaliação final → continuidade');
+ for(let y=2026;y<=2035;y++)if(![2029,2032,2035].includes(y))el('rect',{x:X(y)-4,y:295,width:8,height:8,fill:'none',stroke:C.deep},s);})();
+
+
+const EX=[
+ {n:'E1',s:'Normas e instituições',pl:'Pôr as SBN na lei, nos planos e nas regras de contratação, para não dependerem de projetos avulsos nem de mudanças de gestão.',kd:'Política de SBN nos municípios · manual de contratação pública · SBN nos planos de bacia · resolução no CONAMA',t:'Institucionalização e integração normativa',ic:'doc',p:29,q:'Quadro 7',r:'Marco institucional estável, com competências claras e SBN incorporadas às decisões públicas.',a:[['E1.1','Institucionalizar a Política de SBN ou integrá-la a normas vigentes','% municípios com documento normativo','4,5%','8,75%','17,5%'],['E1.2','Manual de SBN em contratações públicas','Manual de orçamentação','1 manual','',''],['E1.3','Articulação federativa no PCVR','% municípios da Rede PCVR com SBN','15%','35%','70%'],['E1.4','Registrar SBN na base nacional (GEOCAU)','% municípios com SBN implementadas','4,5%','8,75%','17,5%'],['E1.5','SBN nos Planos de Recursos Hídricos','Propostas aos Comitês de Bacia','3','7','10'],['E1.6','Resolução CONAMA sobre licenciamento de SBN','Proposta apresentada','','','1']]},
+ {n:'E2',s:'Capacitação e comunicação',pl:'Formar gestores, técnicos e comunidades para planejar, contratar, executar e manter SBN - em qualquer porte de município.',kd:'Curso EAD gratuito · seminários · plano de comunicação · SBN nos currículos',t:'Comunicação e capacitação',ic:'grad',p:30,q:'Quadro 8',r:'Rede nacional de capacidades: formação, assistência regional e comunicação acessível.',a:[['E2.1','Capacitar gestores públicos','Curso EAD (Escola Virtual de Governo)','1 curso','',''],['E2.2','SBN em currículos formativos','Proposta ao MEC','','','1'],['E2.3','Divulgação e aprendizagem','Seminários nacionais + subnacionais','1 + 3','3 + 10',''],['E2.4','Plano de Comunicação da ENSBN','Plano com identidade visual','1 plano','',''],['E2.5','Intercâmbios gestores-sociedade-especialistas','Intercâmbios apoiados','2','5','']]},
+ {n:'E3',s:'Justiça e salvaguardas',pl:'Garantir que os benefícios cheguem a quem mais precisa e que nenhuma intervenção expulse moradores.',kd:'Regras de participação · triagem de integridade · critérios de prioridade · Taxonomia Sustentável',t:'Justiça socioambiental, participação e salvaguardas',ic:'scale',p:31,q:'Quadro 9',r:'Legitimidade social, direitos protegidos, mecanismos contra deslocamento e gentrificação verde.',a:[['E3.1','Documento técnico de participação social','Documento publicado','','1',''],['E3.2','Triagem, integridade e gestão de riscos','Documento publicado','','1',''],['E3.3','Priorização de territórios e populações','Documento publicado','','1',''],['E3.4','Guia de Economia Circular em SBN','Guia publicado','','','1'],['E3.5','SBN na Taxonomia Sustentável Brasileira','Documento ao CITSB','','1','']]},
+ {n:'E4',s:'Financiamento',pl:'Garantir dinheiro permanente - não só para construir, mas também para manter e monitorar ao longo dos anos.',kd:'SBN em fundos e orçamentos · carteira nacional de projetos · pagamento por serviços ambientais',t:'Financiamento, instrumentos econômicos e escalabilidade',ic:'coin',p:32,q:'Quadro 10',r:'Carteira de projetos financiáveis, recursos rastreáveis e manutenção protegida.',a:[['E4.1','SBN em programas orçamentários e fundos','Instrumentos com recursos para SBN','1','2','3'],['E4.2','Estratégia de financiamento do Banco de Projetos PCVR','Documento técnico','','1',''],['E4.3','Carteira nacional de projetos de SBN','Plataforma de livre acesso','1','',''],['E4.4','SBN na Taxonomia - setor construção','Caderno técnico','1','',''],['E4.5','Capacitar municípios para acessar recursos','Eventos','1','3',''],['E4.6','Pagamento por serviços ambientais em SBN urbanas','Metodologia','','','1']]},
+ {n:'E5',s:'Projetos no território',pl:'Apoiar os municípios a projetar e implantar SBN para problemas concretos: cheias, calor, encostas, alimento, favelas e costa.',kd:'Até 250 projetos por frente em 2035 · 6 frentes prioritárias',t:'Implementação, manutenção e gestão adaptativa',ic:'tool',p:33,q:'Quadro 11',r:'Projetos em todo o país com governança, manutenção assegurada e revisão periódica.',a:[['E5.1','Inundações, enxurradas e alagamentos','Projetos estruturados','50','150','250'],['E5.2','Resfriamento urbano','Projetos estruturados','50','150','250'],['E5.3','Estruturas híbridas em encostas','Projetos estruturados','10','25','50'],['E5.4','Agricultura urbana e periurbana','Projetos estruturados','50','150','250'],['E5.5','Favelas, periferias e comunidades urbanas','Projetos implementados','10','25','50'],['E5.6','Erosão e inundação costeira','Projetos implementados','10','25','50']]},
+ {n:'E6',s:'Dados e pesquisa',pl:'Saber onde estão as SBN e se funcionam: uma base nacional de registros, referências técnicas e pesquisa aplicada.',kd:'Base nacional no GEOCAU · repositório de editais · estudos de longa duração',t:'Dados, informação e pesquisa',ic:'db',p:34,q:'Quadro 12',r:'Base nacional interoperável, pesquisa e indicadores mínimos.',a:[['E6.1','Base de dados nacional de SBN (GEOCAU)','Ferramenta + sistema de integração','1 + 1','',''],['E6.2','Referências técnicas de planejamento a avaliação','Documentos técnicos','1','3',''],['E6.3','Repositório de editais e termos de referência','Repositório público','','1',''],['E6.4','Pesquisas aplicadas e de longa duração','Estudos publicados','2','3',''],['E6.5','Manutenção e avaliação do ciclo de vida','Documento técnico','','1','']]}];
+$('#eixoCards').innerHTML=EX.map((e,i)=>`<div class="ecard" data-i="${i}"><div class="top"><span class="code">${e.n}</span><div class="ib" style="margin:0">${icon(e.ic)}</div></div><h4>${e.s}</h4><div class="off">Nome no documento: ${e.t}</div><div class="pl">${e.pl}</div><div class="kd"><b>Entregas-chave</b>${e.kd}</div><span class="r">${refText(e.p,e.q)}</span><div class="go">Ver as ${e.a.length} ações ↓</div></div>`).join('');
+$('#eixoChips').innerHTML='<button data-i="-1" class="on"><span class="cc"><b>Todos</b><small>33 ações</small></span></button>'+EX.map((e,i)=>`<button data-i="${i}">${icon(e.ic)}<span class="cc"><b>${e.n}</b><small>${e.s}</small></span></button>`).join('');
+const ALINK={"E1.3": ["Programa Cidades Verdes Resilientes (texto-base)", "https://www.gov.br/mma/pt-br/centrais-de-conteudo/publicacoes/qualidade-ambiental-e-meio-ambiente-urbano/pcvr.pdf"], "E1.6": ["CONAMA", "https://conama.mma.gov.br/"], "E2.1": ["Escola Virtual de Governo (EV.G)", "https://www.escolavirtual.gov.br/"], "E3.5": ["Taxonomia Sustentável Brasileira", "https://www.gov.br/fazenda/pt-br/orgaos/spe/taxonomia-sustentavel-brasileira/cadernos"], "E4.2": ["Banco de Projetos do PCVR", "https://www.gov.br/mma/pt-br/assuntos/meio-ambiente-urbano-recursos-hidricos-qualidade-ambiental/cidades-verdes-resilientes/Banco%20de%20Projetos%20do%20Programa%20Cidades%20Verdes%20e%20Resilientes"], "E4.4": ["Taxonomia Sustentável Brasileira", "https://www.gov.br/fazenda/pt-br/orgaos/spe/taxonomia-sustentavel-brasileira/cadernos"]};
+function plan(i){$$('#eixoChips button').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+ const list=i<0?EX:[EX[i]];
+ $('#eixoInfo').innerHTML=i<0?'':`<div class="panel soft" style="margin-bottom:14px"><span class="r cr">${refText(EX[i].p,EX[i].q)}</span><div class="eyebrow">${EX[i].n} · ${EX[i].s}</div><p style="margin:0 0 6px;font-size:1.05rem">${EX[i].pl}</p><p style="margin:0;font-size:.88rem;color:var(--muted)"><b>Resultado esperado (documento):</b> ${EX[i].r}</p></div>`;
+ let h='<tr><th style="width:62px">Ação</th><th>O quê</th><th>Indicador / entrega</th><th class="p1">Curto<br><small>2026-29</small></th><th class="p2">Médio<br><small>2030-32</small></th><th class="p3">Longo<br><small>2033-35</small></th><th>Fonte</th></tr>';
+ list.forEach(e=>{if(i<0)h+=`<tr class="eixo"><td colspan="7">${e.n} · ${e.s} <small style="font-weight:400">- ${e.t}</small></td></tr>`;e.a.forEach(a=>{h+=`<tr><td class="code">${a[0]}</td><td><b>${a[1]}</b>${ALINK[a[0]]?`<a class="xl" href="${ALINK[a[0]][1]}" target="_blank" rel="noopener">${ALINK[a[0]][0]} ↗</a>`:''}</td><td>${a[2]}</td>${[3,4,5].map(k=>`<td class="v ${a[k]?'f':''}">${a[k]||'-'}</td>`).join('')}<td><span class="r">${refText(e.p,e.q)}</span></td></tr>`;});});
+ $('#ptable').innerHTML=h;}
+$$('#eixoChips button').forEach(b=>b.onclick=()=>plan(+b.dataset.i));plan(-1);
+$$('#eixoCards .ecard').forEach(a=>a.onclick=()=>{plan(+a.dataset.i);$('#eixoChips').scrollIntoView({behavior:'smooth',block:'start'});});
+
+$('#objs').innerHTML=[['Ampliar e distribuir as SBN','Funções hidrológicas, conectividade, resfriamento, riscos geológicos, agricultura urbana.',22],['Integrar ao planejamento urbano','Desenho urbano, edificações, cidades-esponja.',22],['Marco conceitual e normativo','Referências comuns articuladas às políticas federais.',22],['Fortalecer a governança','Responsabilidades claras, participação e salvaguardas.',22],['Justiça socioambiental e climática','Priorizar territórios historicamente expostos.',22],['Diversificar o financiamento','Recursos rastreáveis, inclusive para manutenção.',23],['Capacidades técnicas e comunitárias','Formação, trabalho e renda, organizações locais.',23],['Educação e comunicação','Da educação básica à formação profissional.',23],['Informação e MRV','Sistemas interoperáveis, dados abertos, indicadores.',23]].map((o,i)=>`<div class="item" style="display:flex;gap:14px"><div class="disp" style="font-size:1.4rem;color:var(--green);font-weight:700;min-width:26px">${i+1}</div><div><h4>${o[0]}</h4><p>${o[1]}</p><span class="r">${refText(o[2])}</span></div></div>`).join('');
+
+
+/* ---------- metas: estrutura ---------- */
+(function(){const D=[['D1','Resiliência territorial e climática','shield','resposta'],['D2','Infraestrutura verde-azul e permeabilidade','drop','escala'],['D3','Soluções híbridas complementares','link','resposta'],['D4','Sociobiodiversidade','flower','escala'],['D5','Espécies nativas','leaf','escala'],['D6','Conectividade ecológica','net','escala'],['D7','Vínculo ao território','map','justica'],['D8','Participação e justiça climática','people','justica'],['D9','Saberes tradicionais','book','justica'],['D10','Qualificação técnica e comunitária','grad','quem'],['D11','Escalabilidade e adaptação','copy','quem'],['D12','Viabilidade econômica','coin','quem']];
+ const V=[['Padronizar sem engessar','check'],['Coordenar sem sobrepor','link'],['Induzir investimento íntegro','coin'],['Transformar pilotos em escala','copy'],['Distribuir sem aprofundar desigualdades','scale'],['Tornar resultados verificáveis','eye']];
+ const lab={resposta:'1.2',escala:'1.4',justica:'1.5',quem:'2.1'};
+ $('#stack').innerHTML=`<div class="col"><div class="ch"><b>12</b><span>Diretrizes nacionais</span></div>${D.map(d=>`<a class="li" href="#${d[3]}" title="Explicada em ${lab[d[3]]}">${icon(d[2])}<em>${d[0]}</em><span style="flex:1">${d[1]}</span><small style="color:var(--muted)">${lab[d[3]]}</small></a>`).join('')}<span class="r" style="margin-top:8px">${refText(26,'Cap. 6')}</span></div>
+ <div class="col"><div class="ch"><b>6</b><span>Valores públicos</span></div>${V.map(v=>`<div class="li nolink" style="display:flex;gap:10px;align-items:center;padding:9px 0;font-size:.9rem">${icon(v[1])}<span>${v[0]}</span></div>`).join('')}<span class="r" style="margin-top:8px">${refText(22,'Cap. 5')}</span></div>
+ <div class="col"><div class="ch"><b>6</b><span>Eixos de ação</span></div>${EX.map(e=>`<a class="li" href="#plano">${icon(e.ic)}<em>${e.n}</em><span style="flex:1">${e.s}</span><small style="color:var(--muted)">${e.a.length} ações</small></a>`).join('')}<span class="r" style="margin-top:8px">${refText(27,'Quadro 6')}</span></div>
+ <div class="col v"><div class="ch" style="border-color:rgba(255,255,255,.25)"><b style="color:var(--lime)">2035</b><span>Visão</span></div><p style="font-family:'Space Grotesk';font-size:1.1rem;line-height:1.4">SBN como eixo estruturante do desenvolvimento ambiental urbano: territórios mais resilientes, biodiversos e justos.</p><div class="big" style="color:var(--lime);font-size:2.4rem;margin-top:20px">17,5%</div><small>dos municípios até 2035</small></div>`;})();
+
+/* ---------- em aberto ---------- */
+const CRIT=[['g','Sistema','Da intervenção ao sistema','A tríade componente-arranjo-sistema é a maior contribuição para o planejamento: permite ler projetos isolados como peças de uma estrutura territorial.',14,'Níveis de organização'],
+ ['g','Integridade','Um filtro contra o greenwashing','Nove critérios cumulativos e seis exclusões funcionam como controle de qualidade: não basta plantar, é preciso demonstrar função ecológica e social.',15,'Quadro 2'],
+ ['b','Híbridas','Verde-azul × cinza','A Estratégia não elimina a engenharia e aceita soluções híbridas. A pergunta aberta é como provar, na prática, a "contribuição ecológica demonstrável".',26,'Diretriz 3'],
+ ['b','Escala','Escala funcional × limite municipal','Bacias e corredores ultrapassam o município, mas quem implementa é o município. Como traduzir isso no Plano Diretor e no zoneamento?',17,'Quadro 3'],
+ ['c','Gentrificação','Salvaguardas ainda por construir','O risco de gentrificação verde é reconhecido, mas os instrumentos concretos (Eixo 3) são documentos técnicos a elaborar até o médio prazo.',31,'Quadro 9'],
+ ['c','Capacidade','Meta × capacidade municipal','A meta de 17,5% depende de financiamento, equipes, dados e manutenção - justamente as lacunas do diagnóstico. Muitas metas do plano são "1 documento publicado".',23,'Quadro 5']];
+const CC={g:[C.green,'Contribuição forte'],b:[C.blue,'Ponto a observar'],c:[C.clay,'Tensão ou risco']};
+$('#critAcc').innerHTML=CRIT.map((c,i)=>`<div class="hp ${i===0?'on':''}"><div class="hp-tab" style="border-top:5px solid ${CC[c[0]][0]}"><span class="k">${String(i+1).padStart(2,'0')}</span><span class="vt">${c[1]}</span></div><div class="hp-body"><div class="eyebrow" style="color:${CC[c[0]][0]}">${CC[c[0]][1]}</div><h3>${c[2]}</h3><p>${c[3]}</p><span class="r">Apoia-se em: ${refText(c[4],c[5])}</span></div></div>`).join('');
+$$('#critAcc .hp').forEach(p=>p.onclick=()=>$$('#critAcc .hp').forEach(x=>x.classList.toggle('on',x===p)));
+
+/* ---------- ferramentas ---------- */
+const PD=[['Estrutura ecológica territorial','D2, D6 · nível "sistema"'],['Espaços verdes em rede','Conectividade (D6), não áreas isoladas'],['Bacias na organização do território','Escopo funcional · cidades-esponja'],['Aumento da permeabilidade','D2 · índices, pavimentos, retenção'],['Articulação verde-azul-cinza','D3 · híbridas justificadas'],['Áreas prioritárias para adaptação','D1 · calor, inundação, encostas'],['Espécies nativas e sociobiodiversidade','D4, D5'],['Vulneráveis na partilha dos benefícios','D8 · contra gentrificação verde'],['Financiamento e manutenção','D12 · ciclo de vida completo'],['Indicadores e monitoramento','Cap. 8 · MRV']];
+toggleGrid($('#pdm'),PD,'pdm',st=>{const n=Object.values(st).filter(Boolean).length;meter($('#pdmMeter'),n,10);$('#pdmScore').innerHTML=`${n}/10 aspectos<br><small style="font-family:Inter;font-size:.85rem;color:var(--muted)">${n>=8?'Instrumento bem alinhado à ENSBN.':n>=4?'Alinhamento parcial - veja as lacunas.':'Pouco alinhado à lógica da ENSBN.'}</small>`;});
+const pn=$('#planName');pn.value=S.get('planName','');pn.oninput=()=>S.set('planName',pn.value);
+
+route();
+</script>
+<div id="exModal" class="exm" hidden><div class="exbg" onclick="closeEx()"></div><div class="expan" role="dialog" aria-modal="true"><button class="exx" onclick="closeEx()" aria-label="Fechar">×</button><div class="exb"></div></div></div>
+</body>
+</html>
